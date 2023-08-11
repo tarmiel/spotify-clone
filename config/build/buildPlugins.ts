@@ -51,7 +51,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
       new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css',
-      })
+      }),
     );
     // plugins.push(
     //   new CopyPlugin({

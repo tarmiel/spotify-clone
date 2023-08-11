@@ -1,0 +1,109 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "import"],
+  "rules": {
+    "max-len": [
+      "warn",
+      {
+        "ignoreComments": true,
+        "code": 120
+      }
+    ],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "react/display-name": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "react/no-unstable-nested-components": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-shadow": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "warn",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-param-reassign": "off",
+    "no-undef": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/no-var-requires": ["warn"],
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "*.scss",
+            "patternOptions": { "matchBase": true },
+            "group": "unknown",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "groups": ["external", "builtin", "internal", "parent", "sibling", "index", "unknown"],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["@/shared/*/*/**", "@/entities/*/**", "@/features/*/**", "@/widgets/*/**", "@/pages/*/**"],
+            "message": "Direct access to the internal parts of the module is prohibited"
+          },
+          {
+            "group": ["../**/shared", "../**/entities", "../**/features", "../**/widgets", "../**/pages"],
+            "message": "Prefer absolute imports instead of relatives"
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/src/**/*.{test,stories}.{ts,tsx}"],
+      "rules": {
+        //"i18next/no-literal-string": "off",
+        "max-len": "off"
+      }
+    }
+  ],
+  "globals": {
+    "__IS_DEV__": true,
+    "__API__": true,
+    "__PROJECT__": true
+  }
+}
