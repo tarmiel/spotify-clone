@@ -8,7 +8,9 @@
   "scripts": {
     "start": "webpack serve --env port=3000",
     "build:prod": "webpack  --env mode=production",
-    "build:dev": "webpack  --env mode=development"
+    "build:dev": "webpack  --env mode=development",
+    "sb": "storybook dev -p 6006 -c ./config/storybook",
+    "sb:build": "storybook build -c ./config/storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
@@ -18,6 +20,14 @@
     "@babel/preset-typescript": "^7.22.5",
     "@babel/types": "^7.22.10",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/react": "^7.2.3",
+    "@storybook/react-webpack5": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0",
     "@svgr/webpack": "^8.0.1",
     "@types/babel__core": "^7.20.1",
     "@types/circular-dependency-plugin": "^5.0.5",
@@ -36,6 +46,8 @@
     "mini-css-extract-plugin": "^2.7.6",
     "sass": "^1.65.1",
     "sass-loader": "^13.3.2",
+    "storybook": "^7.2.3",
+    "storybook-addon-themes": "^6.1.0",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",

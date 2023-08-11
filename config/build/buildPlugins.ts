@@ -21,8 +21,6 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
       __API__: JSON.stringify(options.apiUrl),
       __PROJECT__: JSON.stringify(options.project),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin(),
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: true,
@@ -41,11 +39,11 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
   if (options.isDev) {
     plugins.push(new ReactRefreshWebpackPlugin());
     plugins.push(new webpack.HotModuleReplacementPlugin());
-    plugins.push(
-      new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-      })
-    );
+    // plugins.push(
+    //   new BundleAnalyzerPlugin({
+    //     openAnalyzer: false,
+    //   })
+    // );
   }
 
   if (isProd) {
