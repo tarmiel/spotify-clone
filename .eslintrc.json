@@ -41,7 +41,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-shadow": "off",
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "warn",
+    "import/no-extraneous-dependencies": "off",
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "no-param-reassign": "off",
