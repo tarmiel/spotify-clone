@@ -1,3 +1,5 @@
 {
-  "some text": "text"
+  "some text": {
+    "some2": "Ru Oops"
+  }
 }
