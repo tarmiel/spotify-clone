@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2015",
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
