@@ -41,7 +41,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(
       new BundleAnalyzerPlugin({
-        openAnalyzer: true,
+        openAnalyzer: false,
       }),
     );
   }

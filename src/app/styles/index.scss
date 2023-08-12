@@ -1,0 +1,89 @@
+@import 'reset';
+@import 'variables/global';
+@import 'themes/dark';
+@import 'fonts/fonts';
+
+html {
+  scrollbar-color: hsla(0, 0%, 100%, 0.3) transparent;
+  scrollbar-width: auto;
+}
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 100%, 0.3);
+}
+
+html {
+  background-color: #121212;
+  height: 100%;
+}
+body,
+input {
+  color: #b3b3b3;
+  text-transform: none;
+}
+a,
+button {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+button {
+  color: #b3b3b3;
+}
+body {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  line-height: normal;
+  min-height: 600px;
+  min-width: 800px;
+  height: 100%;
+  width: 100%;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+    var(--fallback-fonts, sans-serif), sans-serif;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+//===========================================================//
+
+#root {
+  isolation: isolate;
+  width: 100%;
+  z-index: 0;
+}
+#root,
+.App {
+  height: 100%;
+  position: relative;
+}
+.App {
+  -webkit-transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
+  transition: none 0.5s cubic-bezier(0.3, 0, 0.4, 1);
+  -webkit-transition-property: background;
+  transition-property: background;
+}
+.contentSpacing {
+  margin: 0;
+  max-width: var(--content-max-width);
+  padding: 0 var(--content-spacing);
+}
