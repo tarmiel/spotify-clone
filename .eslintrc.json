@@ -5,6 +5,7 @@
     "jest": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -31,6 +32,7 @@
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/ban-ts-comment": "off",
     "max-len": [
       "warn",
       {
@@ -49,7 +51,6 @@
             "groups": [
               ["^react$", "^[a-z]", "^@[a-z]"],
               ["^@/"],
-              ["^~"],
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
               ["^.+\\.s?css$"],
@@ -74,5 +75,10 @@
         ]
       }
     }
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
