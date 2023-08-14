@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/classNames';
 
 import styles from './Text.module.scss';
 
-export type TextProps<T extends ElementType> = {
+type TextOwnProps<T extends ElementType> = {
   className?: string;
   children: ReactNode;
   as?: T;
@@ -16,18 +16,18 @@ export type TextProps<T extends ElementType> = {
 
 type ElementRef<C extends ElementType> = React.ComponentPropsWithRef<C>['ref'];
 
-type PolymorphicComponentProp<T extends React.ElementType> = React.PropsWithChildren<TextProps<T>> &
-  Omit<React.ComponentPropsWithoutRef<T>, keyof TextProps<T>>;
+type PolymorphicComponentProp<T extends React.ElementType> = React.PropsWithChildren<TextOwnProps<T>> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof TextOwnProps<T>>;
 
-type TextComponentProps<T extends ElementType> = PolymorphicComponentProp<T> & {
+export type TextProps<T extends ElementType> = PolymorphicComponentProp<T> & {
   ref?: ElementRef<T>;
 };
 
-type TextComponent = <C extends ElementType>(props: TextComponentProps<C>) => ReactNode;
+type TextComponent = <C extends ElementType>(props: TextProps<C>) => ReactNode;
 
 export const Text: TextComponent = React.forwardRef(
   <C extends ElementType = 'p'>(
-    { as, children, color, fontWeight, fontSize, textAlign, className, ...props }: TextComponentProps<C>,
+    { as, children, color, fontWeight, fontSize, textAlign, className, ...props }: TextProps<C>,
     ref?: ElementRef<C>,
   ) => {
     const Component = as ?? 'p';
@@ -42,7 +42,7 @@ export const Text: TextComponent = React.forwardRef(
     ];
 
     return (
-      <Component {...props} className={cn(classes)} ref={ref}>
+      <Component className={cn(classes)} ref={ref} {...props}>
         {children}
       </Component>
     );
