@@ -1,0 +1,87 @@
+.Text {
+  padding: 0;
+  margin: 0;
+  overflow-wrap: break-word;
+  font-weight: 400;
+  color: var(--text-base);
+}
+
+// [FontSize] =========================
+.xs {
+  font-size: 0.6875rem;
+}
+
+.sm {
+  font-size: 0.875rem;
+}
+
+.md {
+  font-size: 1rem;
+}
+
+.lg {
+  font-size: 1.5rem;
+}
+
+.xl {
+  font-size: 4.5rem;
+}
+
+// [FontWeight] =======================
+.normal {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.extraBold {
+  font-weight: 900;
+}
+
+// [TextAlign] ========================
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.justify {
+  text-align: justify;
+}
+
+// [Color] ============================
+.base {
+  color: var(--text-base);
+}
+
+.subdued {
+  color: var(--text-subdued);
+}
+
+.bright {
+  color: var(--text-bright);
+}
+
+.negative {
+  color: var(--text-negative);
+}
+
+.warning {
+  color: var(--text-warning);
+}
+
+.positive {
+  color: var(--text-positive);
+}
+
+.announcement {
+  color: var(--text-announcement);
+}

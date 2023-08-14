@@ -8,7 +8,6 @@
 }
 
 .App {
-  --content-spacing: 16px;
   --content-max-width: 1955px;
-  --content-spacing: clamp(16px, 16px + (var(--main-content-width) - 600)/424 * 8px, 24px);
+  --content-spacing: clamp(16px, 16px + (var(--main-content-width) - 600) / 424 * 8px, 24px);
 }
