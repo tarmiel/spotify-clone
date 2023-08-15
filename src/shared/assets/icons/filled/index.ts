@@ -1,5 +1,8 @@
+export { default as Apple } from './apple.svg';
 export { default as Bookmark } from './bookmark.svg';
 export { default as DropDown } from './dropdown.svg';
+export { default as Facebook } from './facebook.svg';
+export { default as Google } from './google.svg';
 export { default as Heart } from './heart.svg';
 export { default as Home } from './home.svg';
 export { default as Library } from './library.svg';

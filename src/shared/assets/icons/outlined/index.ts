@@ -8,6 +8,8 @@ export { default as Devices } from './devices.svg';
 export { default as Dots } from './dots-vertical.svg';
 export { default as Earth } from './earth.svg';
 export { default as ExternalLink } from './external-link.svg';
+export { default as Eye } from './eye.svg';
+export { default as EyeClose } from './eye-close.svg';
 export { default as FullScreen } from './fullscreen.svg';
 export { default as HashTag } from './hashtag.svg';
 export { default as Heart } from './heart.svg';
