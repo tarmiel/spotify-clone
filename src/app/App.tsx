@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/shared/lib/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { BaseButton } from '@/shared/ui/Button/BaseButton/BaseButton';
+import { ClearButton } from '@/shared/ui/Button/ClearButton/ClearButton';
+import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
 import { Text } from '@/shared/ui/Typography/Text/Text';
 
@@ -15,6 +18,9 @@ const App = () => {
     <div className={cn('App', theme)}>
       <button onClick={onToggleLang}>{t('language')}</button>
       <Icon type={'filled'} name={'Apple'} color={'red'} width={10} height={10} />
+      <BaseButton onClick={() => console.log('click')}>Clock</BaseButton>
+      <ClearButton>Your Library</ClearButton>
+      <IconButton bg={'highlight'} rounded icon={<Icon type={'outlined'} name={'MenuTile'} />} />
     </div>
   );
 };

@@ -1,0 +1,28 @@
+.ClearButton {
+  color: var(--text-subdued, #6a6a6a);
+  transition: color 0.2s linear;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: transparent;
+  border-radius: 500px;
+  user-select: none;
+  vertical-align: middle;
+  padding-block: 6px;
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover:not(:disabled) {
+    color: var(--text-base);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+  }
+}
+
+.withIcon {
+  padding: 4px 8px;
+  gap: 12px;
+}

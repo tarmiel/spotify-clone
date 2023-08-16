@@ -6,8 +6,6 @@ import { Text, TextProps } from '../Text/Text';
 
 interface IPProps extends TextProps<'p'> {}
 
-const P: FC<IPProps> = ({ className, ...props }) => {
+export const P: FC<IPProps> = ({ className, ...props }) => {
   return <Text as={'p'} className={cn(className)} color={'base'} weight={'normal'} {...props} />;
 };
-
-export default P;

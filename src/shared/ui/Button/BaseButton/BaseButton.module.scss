@@ -1,0 +1,12 @@
+.BaseButton {
+  cursor: pointer;
+  max-width: 100%;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.full {
+  width: 100%;
+}
