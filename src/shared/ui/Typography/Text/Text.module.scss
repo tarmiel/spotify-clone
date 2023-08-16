@@ -3,7 +3,21 @@
   margin: 0;
   overflow-wrap: break-word;
   font-weight: 400;
-  color: var(--text-base);
+  color: inherit;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.italic {
+  font-style: italic;
 }
 
 // [FontSize] =========================
@@ -60,6 +74,10 @@
 // [Color] ============================
 .base {
   color: var(--text-base);
+}
+
+.inverted {
+  color: var(--text-inverted);
 }
 
 .subdued {

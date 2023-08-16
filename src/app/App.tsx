@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/shared/lib/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Icon } from '@/shared/ui/Icon';
-import { H1 } from '@/shared/ui/Typography/Heading';
 import { Text } from '@/shared/ui/Typography/Text/Text';
 
 const App = () => {
@@ -15,10 +14,7 @@ const App = () => {
   return (
     <div className={cn('App', theme)}>
       <button onClick={onToggleLang}>{t('language')}</button>
-      <Text as={'h1'}>Text</Text>
-      <H1>Heading</H1>
-
-      <Icon type={'outlined'} name={'Earth'} width={50} height={50} color={'red'} />
+      <Icon type={'filled'} name={'Apple'} color={'red'} width={10} height={10} />
     </div>
   );
 };

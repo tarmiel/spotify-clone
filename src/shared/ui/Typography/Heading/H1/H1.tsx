@@ -11,5 +11,5 @@ interface IH1Props extends TextProps<'h1'> {
 }
 
 export const H1: FC<IH1Props> = ({ className, ...props }) => {
-  return <Text as={'h1'} className={cn(styles.H1, className)} fontWeight={'extraBold'} {...props} />;
+  return <Text as={'h1'} className={cn(styles.H1, className)} color={'base'} weight={'extraBold'} {...props} />;
 };

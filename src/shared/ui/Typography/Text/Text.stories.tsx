@@ -5,7 +5,12 @@ import { Text } from './Text';
 const meta: Meta<typeof Text> = {
   title: 'shared/Typography/Text',
   component: Text,
-  argTypes: {},
+  argTypes: {
+    as: {
+      control: 'select',
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'p'],
+    },
+  },
   //tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -15,21 +20,16 @@ const meta: Meta<typeof Text> = {
 export default meta;
 type Story = StoryObj<typeof Text>;
 
-export const Heading: Story = {
-  args: {
-    as: 'h1',
-    children: 'Text Text 123 Текст',
-  },
-};
-export const Paragraph: Story = {
+export const Default: Story = {
   args: {
     as: 'p',
-    children: 'Text Text 123 Текст',
-  },
-};
-export const Span: Story = {
-  args: {
-    as: 'span',
+    color: 'inverted',
+    weight: 'normal',
+    size: 'md',
+    truncate: false,
+    nowrap: false,
+    italic: false,
+    title: 'title for text',
     children: 'Text Text 123 Текст',
   },
 };
