@@ -1,0 +1,23 @@
+.Divider {
+  color: inherit;
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-block-size: 1rem;
+  user-select: none;
+}
+
+.line {
+  width: 100%;
+  flex-grow: 1;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  border-image: initial;
+  border-top: 1px solid inherit;
+}
+
+.content {
+  padding: 2px 10px;
+}

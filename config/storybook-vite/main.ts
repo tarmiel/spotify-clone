@@ -36,8 +36,6 @@ const config: StorybookConfig = {
       path.resolve(__dirname, '../../vite.config.ts'),
     );
 
-    console.log(JSON.stringify(response));
-
     return mergeConfig(config, {
       ...response?.config,
       plugins: [svgr({ exportAsDefault: true })],
