@@ -1,0 +1,48 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  input {
+    appearance: none;
+    width: 44px;
+    min-block-size: 22px;
+    margin: 0;
+    position: relative;
+    background-color: var(--essential-subdued, #878787);
+    border-radius: 11px;
+    border: 1px solid var(--essential-subdued, #878787);
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+
+    &:checked {
+      background-color: var(--background-bright-accent, #1ed760);
+      border-color: var(--background-bright-accent, #1ed760);
+
+      &::before {
+        left: unset;
+        transform: translateX(calc(100% + 2px));
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      background-color: var(--background-base);
+      transition: all 0.2s;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--outline-color);
+      outline-offset: 2px;
+    }
+  }
+}
