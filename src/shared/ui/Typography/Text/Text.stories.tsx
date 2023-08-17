@@ -23,13 +23,13 @@ type Story = StoryObj<typeof Text>;
 export const Default: Story = {
   args: {
     as: 'p',
-    color: 'inverted',
+    color: 'base',
     weight: 'normal',
     size: 'md',
     truncate: false,
     nowrap: false,
     italic: false,
     title: 'title for text',
-    children: 'Text Text 123 Текст',
+    children: __API__,
   },
 };

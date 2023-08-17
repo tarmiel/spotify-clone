@@ -1,5 +1,6 @@
 import path from 'path';
 import { loadConfigFromFile, mergeConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
@@ -20,6 +21,9 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   docs: {
     autodocs: 'tag',
   },
@@ -32,9 +36,11 @@ const config: StorybookConfig = {
       path.resolve(__dirname, '../../vite.config.ts'),
     );
 
+    console.log(JSON.stringify(response));
+
     return mergeConfig(config, {
       ...response?.config,
-      plugins: [],
+      plugins: [svgr({ exportAsDefault: true })],
       resolve: {
         alias: [
           {
@@ -43,8 +49,9 @@ const config: StorybookConfig = {
           },
         ],
       },
-      define: { 'process.env': {} },
+      define: { ...response?.config.define, 'process.env': {} },
     });
   },
 };
+
 export default config;

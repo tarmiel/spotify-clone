@@ -7,25 +7,64 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s linear;
 
-  &:disabled {
-    opacity: 0.7;
-  }
-
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: var(--text-base);
-
-    &.highlight {
-      background: var(--background-highlight);
-    }
   }
 }
 
-.rounded {
-  border-radius: 50%;
+.highlight {
+  &:hover {
+    background: var(--background-highlight);
+  }
+
+  &:active {
+    background: var(--background-press);
+  }
 }
 
-.base {
-  background-color: var(--background-base);
+.bg {
+  background: var(--background-press);
+}
+
+.rounded-full {
+  border-radius: var(--rounded-full);
+}
+
+.rounded-square {
+  border-radius: 0;
+}
+
+.sm {
+  padding: 8px;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.md {
+  padding: 12px;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.lg {
+  padding: 12px;
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.hoverScale {
+  &:hover {
+    transform: scale(1.05);
+  }
 }

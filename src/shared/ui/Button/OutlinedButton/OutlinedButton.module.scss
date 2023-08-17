@@ -1,0 +1,50 @@
+.OutlinedButton {
+  color: rgb(255 255 255 / 90%);
+  background-color: transparent;
+  border: 1px solid var(--text-subdued);
+  border-radius: var(--rounded-md);
+  font-size: 1rem;
+  font-weight: 700;
+
+  &:hover {
+    transform: scale(1.05);
+    color: var(--text-base);
+    border: 1px solid var(--text-base);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--background-inverted);
+    outline-offset: 2px;
+  }
+}
+
+.withIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  & > span {
+    margin: auto;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.md {
+  padding: 7px 31px;
+  min-block-size: 48px;
+}
+
+.sm {
+  min-block-size: 32px;
+  padding: 3px 15px;
+  font-size: 0.875rem;
+  gap: 4px;
+}

@@ -1,0 +1,23 @@
+.PrimaryButton {
+  color: var(--text-inverted);
+  background-color: var(--background-bright-accent);
+  padding: 8px 32px;
+  border-radius: var(--rounded-md);
+  font-size: 1rem;
+  font-weight: 700;
+  min-block-size: 48px;
+
+  &:hover {
+    background-color: var(--background-bright-accent-highlight);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--background-inverted);
+    outline-offset: 2px;
+  }
+}

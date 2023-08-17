@@ -1,20 +1,19 @@
-import React, { FC, ReactElement } from 'react';
+import { FC } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 
-import { BaseButton, IBaseButtonProps } from '../BaseButton/BaseButton';
+import { Button, IButtonProps } from '../Button/Button';
 
 import styles from './ClearButton.module.scss';
 
-interface IClearButtonProps extends IBaseButtonProps {
-  icon?: ReactElement;
+interface IClearButtonProps extends IButtonProps {
+  withIcon?: boolean;
 }
 
-export const ClearButton: FC<IClearButtonProps> = ({ icon, className, children, ...props }) => {
+export const ClearButton: FC<IClearButtonProps> = ({ className, withIcon, children, ...props }) => {
   return (
-    <BaseButton className={cn(styles.ClearButton, { [styles.withIcon]: !!icon }, className)} {...props}>
-      {icon}
+    <Button className={cn(styles.ClearButton, { [styles.withIcon]: withIcon }, className)} {...props}>
       {children}
-    </BaseButton>
+    </Button>
   );
 };

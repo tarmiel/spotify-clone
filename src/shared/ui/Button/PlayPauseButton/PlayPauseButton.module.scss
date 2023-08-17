@@ -1,0 +1,20 @@
+.PlayPauseButton {
+  color: var(--text-inverted);
+
+  &:hover {
+    color: var(--text-inverted);
+  }
+
+  &:active {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
+.primary {
+  background-color: var(--background-bright-accent);
+}
+
+.secondary {
+  background-color: var(--background-inverted);
+}

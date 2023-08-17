@@ -4,21 +4,18 @@
   font-size: 1rem;
   font-weight: 700;
   background-color: transparent;
-  border-radius: 500px;
-  user-select: none;
+  border-radius: 9999px;
   vertical-align: middle;
+  min-block-size: 40px;
   padding-block: 6px;
   padding: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  &:hover:not(:disabled) {
+  &:hover,
+  &:focus-visible {
     color: var(--text-base);
-  }
-
-  &:disabled {
-    opacity: 0.7;
   }
 }
 

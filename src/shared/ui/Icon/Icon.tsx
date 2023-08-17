@@ -8,14 +8,15 @@ export const IconsMap = {
   filled: IconsFilled,
 };
 
-type IconType = keyof typeof IconsMap;
+export type IconType = keyof typeof IconsMap;
+export type IconName<T extends IconType> = keyof (typeof IconsMap)[T];
 
 interface IIconProps<T extends IconType> extends Omit<SVGProps<SVGSVGElement>, 'name'> {
   type: T;
-  name: keyof (typeof IconsMap)[T];
+  name: IconName<T>;
 }
 
-const Icon = <T extends IconType>({
+export const Icon = <T extends IconType>({
   type,
   name,
   width = '16',
@@ -26,5 +27,3 @@ const Icon = <T extends IconType>({
 
   return <SVGIcon width={width} height={height} {...props} />;
 };
-
-export default Icon;
