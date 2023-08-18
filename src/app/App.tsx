@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { MainLayout } from '@/shared/layouts/MainLayout';
 import { cn } from '@/shared/lib/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Icon } from '@/shared/ui/Icon';
@@ -11,8 +12,7 @@ const App = () => {
 
   return (
     <div className={cn('App', theme)}>
-      <button onClick={onToggleLang}>{t('language')}</button>
-      <Icon type={'outlined'} name={'Arrow'} color={'red'} width={20} height={20} />
+      <MainLayout />
     </div>
   );
 };

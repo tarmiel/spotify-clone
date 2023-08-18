@@ -47,8 +47,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
+} */
+
+html,
+body {
+  scrollbar-gutter: stable;
 }
 
 body,
@@ -91,6 +96,17 @@ img {
   margin: 0;
   max-width: var(--content-max-width);
   padding: 0 var(--content-spacing);
+}
+
+.hidden-visually {
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 h1,

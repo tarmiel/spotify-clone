@@ -1,0 +1,76 @@
+.MainLayout {
+  --main-view-top-bar-grid-area-z-index: 2;
+  --left-sidebar-grid-area-z-index: 4;
+  --above-everything-except-now-playing-bar-z-index: 5;
+  --above-main-and-now-playing-view-grid-area: 6;
+  --now-playing-bar-grid-area-z-index: calc(var(--above-everything-except-now-playing-bar-z-index) + 1);
+
+  background-color: #000;
+  display: grid;
+  grid-template-areas:
+    'left-sidebar content right-sidebar'
+    'now-playing-bar now-playing-bar now-playing-bar';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr min-content;
+  gap: var(--panel-gap);
+  height: 100%;
+  min-height: 100%;
+  padding: var(--panel-gap);
+  position: relative;
+  width: 100%;
+}
+
+[data-right-sidebar-hidden='true'] .header {
+  grid-area: content/content/content/right-sidebar;
+}
+
+.header {
+  background-color: rgb(230 230 230);
+  grid-area: content;
+  height: 64px;
+  min-width: 0;
+  pointer-events: none;
+  z-index: var(--main-view-top-bar-grid-area-z-index);
+}
+
+.sidebar {
+  background-color: #000;
+  background-color: yellow;
+  grid-area: left-sidebar;
+  position: relative;
+  width: var(--left-sidebar-width);
+  z-index: var(--left-sidebar-grid-area-z-index);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+[data-right-sidebar-hidden='true'] .content {
+  grid-area: content/content/content/right-sidebar;
+}
+
+.content {
+  background-color: rgb(83 83 83);
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.rightbar {
+  background-color: rgb(255 153 0);
+  grid-area: right-sidebar;
+  display: grid;
+  width: var(--right-sidebar-width);
+}
+
+.footer {
+  background-color: rgb(0 0 0);
+  grid-area: now-playing-bar;
+  width: 100%;
+  min-height: 72px;
+  z-index: var(--now-playing-bar-grid-area-z-index);
+}
