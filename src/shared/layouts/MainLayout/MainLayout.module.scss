@@ -25,7 +25,6 @@
 }
 
 .header {
-  background-color: rgb(230 230 230);
   grid-area: content;
   height: 64px;
   min-width: 0;
@@ -35,7 +34,6 @@
 
 .sidebar {
   background-color: #000;
-  background-color: yellow;
   grid-area: left-sidebar;
   position: relative;
   width: var(--left-sidebar-width);
@@ -50,21 +48,25 @@
 }
 
 .content {
-  background-color: rgb(83 83 83);
   grid-area: content;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
   position: relative;
+  border-radius: var(--rounded-sm);
+  background-color: var(--background-base);
   width: 100%;
 }
 
 .rightbar {
-  background-color: rgb(255 153 0);
   grid-area: right-sidebar;
   display: grid;
   width: var(--right-sidebar-width);
+}
+
+[data-right-sidebar-hidden='true'] .rightbar {
+  width: 0;
 }
 
 .footer {

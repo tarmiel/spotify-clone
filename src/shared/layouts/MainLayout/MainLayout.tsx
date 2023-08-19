@@ -21,7 +21,7 @@ export const MainLayout = memo((props: MainLayoutProps) => {
     <div className={cn(styles.MainLayout, className)} data-right-sidebar-hidden="true">
       <div className={styles.sidebar}>
         {sidebar}
-        <LayoutResizer min={280} max={1000} inline={'end'} property={'--left-sidebar-width'} />
+        {/* <LayoutResizer min={280} max={1000} inline={'end'} property={'--left-sidebar-width'} /> */}
       </div>
       <div className={styles.header}>{header}</div>
       <div className={styles.content}>{content}</div>
