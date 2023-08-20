@@ -1,0 +1,7 @@
+.SideBar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-gap);
+  height: 100%;
+  min-height: 0;
+}
