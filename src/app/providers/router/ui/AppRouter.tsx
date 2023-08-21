@@ -1,30 +1,92 @@
-import React, { FC, ReactNode, Suspense, useCallback } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { RouteObject, useRoutes } from 'react-router-dom';
 
 import { AuthGuard, GuestGuard } from '@/entities/session';
-import { AppRouteProps } from '@/shared/types/router';
-import { PageLoader } from '@/widgets/PageLoader';
-
-import { routeConfig } from '../config/routerConfig';
+import { LoginPage } from '@/pages/auth';
+import { HomePage } from '@/pages/HomePage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import { APP_ROUTES } from '@/shared/const/router';
+import { AuthLayout } from '@/shared/layouts/AuthLayout';
+import { MainLayout } from '@/shared/layouts/MainLayout';
 
 const AppRouter = () => {
-  const renderWithWrapper = useCallback((route: AppRouteProps) => {
-    const element = <Suspense fallback={<PageLoader />}>{route.element}</Suspense>;
+  const publicRoutes: RouteObject[] = [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: APP_ROUTES.home,
+          element: <HomePage />,
+        },
+        {
+          path: APP_ROUTES.search,
+          element: <div>SearchPage</div>,
+        },
+        {
+          path: APP_ROUTES.playlist(':id'),
+          element: <div>playlist</div>,
+        },
+        {
+          path: APP_ROUTES.artist(':id'),
+          element: <div>artist</div>,
+        },
+        {
+          path: APP_ROUTES.user(':id'),
+          element: <div>user</div>,
+        },
+      ],
+    },
+  ];
+  const authOnlyRoutes: RouteObject[] = [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: APP_ROUTES.collection,
+          element: <div>collection</div>,
+        },
+        {
+          path: APP_ROUTES.preferences,
+          element: <div>preferences</div>,
+        },
+      ],
+    },
+  ];
+  const guestOnlyRoutes: RouteObject[] = [
+    {
+      path: '/auth',
+      element: <AuthLayout />,
+      children: [
+        {
+          path: APP_ROUTES.auth.login,
+          element: <LoginPage />,
+        },
+        {
+          path: APP_ROUTES.auth.register,
+          element: <div>register</div>,
+        },
+      ],
+    },
+  ];
 
-    const Guard = ({ children }: { children: ReactNode }) => {
-      if (route.authOnly) {
-        return <AuthGuard>{children}</AuthGuard>;
-      }
-      if (route.guestOnly) {
-        return <GuestGuard>{children}</GuestGuard>;
-      }
-      return children;
-    };
-
-    return <Route key={route.path} path={route.path} element={<Guard>{element}</Guard>} />;
-  }, []);
-
-  return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
+  return useRoutes([
+    ...publicRoutes,
+    {
+      path: '/',
+      element: <GuestGuard />,
+      children: [...guestOnlyRoutes],
+    },
+    {
+      path: '/',
+      element: <AuthGuard />,
+      children: [...authOnlyRoutes],
+    },
+    {
+      path: '*',
+      element: <NotFoundPage />,
+    },
+  ]);
 };
 
 export default AppRouter;

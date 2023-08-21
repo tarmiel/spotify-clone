@@ -1,8 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/App';
-import { ErrorBoundary } from './app/providers/ErrorBoundary';
+import { AppProvider } from './app/providers';
 
 import '@/app/styles/index.scss';
 
@@ -17,10 +16,8 @@ const root = createRoot(container);
 
 root.render(
   <>
-    <ErrorBoundary>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
+    <AppProvider>
+      <App />
+    </AppProvider>
   </>,
 );

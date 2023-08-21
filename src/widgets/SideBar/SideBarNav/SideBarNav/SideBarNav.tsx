@@ -1,9 +1,7 @@
-import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { APP_ROUTES } from '@/shared/const/router';
-import { cn } from '@/shared/lib/classNames';
 
 import { useSideBarNavItems } from '../model/lib/getNavItems';
 
@@ -17,8 +15,16 @@ const SideBarNav: FC<ISideBarNavProps> = ({ className }) => {
   const navItems = useSideBarNavItems();
 
   return (
-    <nav>
-      <ul></ul>
+    <nav className={styles.SideBarNav}>
+      <Link to={APP_ROUTES.home}>Home</Link>
+      <Link to={APP_ROUTES.search}>Search</Link>
+      <Link to={APP_ROUTES.artist('1')}>Artist</Link>
+      <Link to={APP_ROUTES.playlist('1')}>Playlist</Link>
+      <Link to={APP_ROUTES.user('1')}>User</Link>
+      <Link to={APP_ROUTES.auth.login}>Login</Link>
+      <Link to={APP_ROUTES.auth.register}>Register</Link>
+      <Link to={APP_ROUTES.collection}>Collection</Link>
+      <Link to={APP_ROUTES.preferences}>Preferences</Link>
     </nav>
   );
 };

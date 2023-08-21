@@ -5,7 +5,7 @@ import { APP_ROUTES } from '@/shared/const/router';
 export const GuestGuard = () => {
   const isAuthorized = false;
 
-  if (isAuthorized) return <Navigate to={APP_ROUTES.home} />;
+  if (isAuthorized) return <Navigate to={APP_ROUTES.home} replace={true} />;
 
   return <Outlet />;
 };
