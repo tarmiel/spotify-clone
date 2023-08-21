@@ -1,16 +1,11 @@
-import React, { FC, ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { APP_ROUTES } from '@/shared/const/router';
 
-interface IAuthGuardProps {
-  children: ReactNode;
-}
-
-export const AuthGuard: FC<IAuthGuardProps> = ({ children }) => {
+export const AuthGuard = () => {
   const isAuthorized = false;
 
-  if (!isAuthorized) return <Navigate to={APP_ROUTES.login} />;
+  if (!isAuthorized) return <Navigate to={APP_ROUTES.auth.login} />;
 
-  return children;
+  return <Outlet />;
 };
