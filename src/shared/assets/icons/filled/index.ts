@@ -6,6 +6,8 @@ export { default as Google } from './google.svg';
 export { default as Heart } from './heart.svg';
 export { default as Home } from './home.svg';
 export { default as Library } from './library.svg';
+export { default as LogoPrimary } from './logo-primary.svg';
+export { default as LogoSecondary } from './logo-secondary.svg';
 export { default as Pause } from './pause.svg';
 export { default as Pin } from './pin.svg';
 export { default as Play } from './play.svg';
