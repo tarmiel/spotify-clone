@@ -1,0 +1,37 @@
+.AppLink {
+  font-weight: normal;
+  text-decoration: none;
+  color: var(--text-base);
+
+  &:hover.underline {
+    text-decoration: underline;
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.base {
+  color: var(--text-base);
+}
+
+.subdued {
+  color: var(--text-subdued);
+}
+
+.xs {
+  font-size: 0.6875rem;
+}
+
+.sm {
+  font-size: 0.875rem;
+}
+
+.md {
+  font-size: 1rem;
+}
+
+.lg {
+  font-size: 2rem;
+}

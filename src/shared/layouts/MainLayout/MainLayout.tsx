@@ -12,7 +12,7 @@ export const MainLayout = memo(() => {
     <div className={cn(styles.MainLayout)} data-right-sidebar-hidden="true">
       <div className={styles.sidebar}>
         <SideBar />
-        {/* <LayoutResizer min={280} max={1000} inline={'end'} property={'--left-sidebar-width'} /> */}
+        {/* <LayoutResizer min={72} max={584} inline={'end'} property={'--left-sidebar-width'} /> */}
       </div>
       <div className={styles.content}>
         <Outlet />

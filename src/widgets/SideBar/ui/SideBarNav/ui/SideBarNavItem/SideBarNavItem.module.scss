@@ -10,6 +10,10 @@
   color: #b3b3b3;
   transition: color 0.2s linear;
 
+  & svg {
+    flex-shrink: 0;
+  }
+
   &:hover,
   &.active {
     color: var(--text-base);
