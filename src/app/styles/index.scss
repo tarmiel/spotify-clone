@@ -85,6 +85,7 @@ img {
   position: relative;
   color: var(--text-base);
   background-color: #000;
+  user-select: none;
 }
 
 .App {

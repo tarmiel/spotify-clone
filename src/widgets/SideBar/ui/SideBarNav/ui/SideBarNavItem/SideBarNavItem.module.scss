@@ -1,0 +1,17 @@
+.SideBarNavItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 40px;
+  text-decoration: none;
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #b3b3b3;
+  transition: color 0.2s linear;
+
+  &:hover,
+  &.active {
+    color: var(--text-base);
+  }
+}
