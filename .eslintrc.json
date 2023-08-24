@@ -29,6 +29,7 @@
     "react/jsx-props-no-spreading": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "no-undef": "off",
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
