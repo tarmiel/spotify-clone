@@ -1,0 +1,87 @@
+.Select {
+  position: relative;
+  user-select: none;
+  flex-shrink: 1;
+
+  .triggerBtn {
+    font-size: 0.875rem;
+    font-weight: 400;
+    max-width: 350px;
+    border-radius: var(--rounded-sm);
+
+    .content {
+      overflow: hidden;
+
+      // text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .options {
+    border-radius: 4px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10000;
+    border: none;
+    outline: none;
+    background: #242424;
+    box-shadow:
+      0 16px 24px rgb(0 0 0 / 30%),
+      0 6px 8px rgb(0 0 0 / 20%);
+    max-height: calc(100vh - 24px);
+    max-width: 350px;
+    min-width: 160px;
+    overflow-y: auto;
+    padding: 4px;
+
+    .label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #b3b3b3;
+      padding: 12px;
+    }
+
+    .option {
+      padding: 12px;
+      border-radius: 2px;
+      color: hsl(0deg 0% 100% / 90%);
+      font-size: 0.875rem;
+      font-weight: 400;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 40px;
+      justify-content: space-between;
+      padding-inline-end: 8px;
+      position: relative;
+      text-align: start;
+      user-select: none;
+      width: 100%;
+
+      .content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .selectedIcon {
+        flex-shrink: 0;
+      }
+
+      &.active {
+        background-color: #3e3e3e;
+        transition: none;
+      }
+
+      &.disabled {
+        opacity: 0.7;
+      }
+
+      &.selected {
+        color: var(--text-positive);
+        background-color: transparent;
+      }
+    }
+  }
+}

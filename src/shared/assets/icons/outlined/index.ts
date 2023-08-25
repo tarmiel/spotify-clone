@@ -1,6 +1,7 @@
 export { default as Adjustments } from './adjustments.svg';
-export { default as Arrow } from './arrow.svg';
 export { default as ArrowCircle } from './arrow-circle-down.svg';
+export { default as ArrowLeft } from './arrow-left.svg';
+export { default as ArrowRight } from './arrow-right.svg';
 export { default as Bookmark } from './bookmark.svg';
 export { default as Chevron } from './chevron.svg';
 export { default as Clock } from './clock.svg';

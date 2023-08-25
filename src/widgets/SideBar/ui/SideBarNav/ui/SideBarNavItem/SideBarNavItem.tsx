@@ -20,6 +20,7 @@ export const SideBarNavItem: FC<ISideBarNavItemProps> = ({
   className,
   activeClassName = styles.active,
 }) => {
+  const itemText = text ? <span>{text}</span> : null;
   return (
     <NavLink
       to={path}
@@ -29,11 +30,11 @@ export const SideBarNavItem: FC<ISideBarNavItemProps> = ({
       {({ isActive }) =>
         isActive ? (
           <>
-            {activeIcon} <span>{text}</span>
+            {activeIcon} {itemText}
           </>
         ) : (
           <>
-            {inActiveIcon} <span>{text}</span>
+            {inActiveIcon} {itemText}
           </>
         )
       }
