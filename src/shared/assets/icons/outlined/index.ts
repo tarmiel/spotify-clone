@@ -4,6 +4,8 @@ export { default as ArrowLeft } from './arrow-left.svg';
 export { default as ArrowRight } from './arrow-right.svg';
 export { default as Bookmark } from './bookmark.svg';
 export { default as Chevron } from './chevron.svg';
+export { default as ChevronLeft } from './chevron-left.svg';
+export { default as ChevronRight } from './chevron-right.svg';
 export { default as Clock } from './clock.svg';
 export { default as Devices } from './devices.svg';
 export { default as Dots } from './dots-vertical.svg';
