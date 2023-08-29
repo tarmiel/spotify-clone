@@ -1,6 +1,6 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
 
-import { AuthGuard, GuestGuard } from '@/entities/session';
+import { AuthGuard, GuestGuard } from '@/entities/Session';
 import { LoginPage } from '@/pages/auth';
 import { HomePage } from '@/pages/HomePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';

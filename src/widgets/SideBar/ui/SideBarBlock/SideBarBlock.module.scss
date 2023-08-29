@@ -1,4 +1,5 @@
 .SideBarBlock {
   background-color: var(--background-base);
-  border-radius: var(--rounded-sm);
+  border-radius: var(--rounded-md);
+  min-height: 0;
 }

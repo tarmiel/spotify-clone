@@ -16,6 +16,7 @@ export { default as HashTag } from './hashtag.svg';
 export { default as Heart } from './heart.svg';
 export { default as Home } from './home.svg';
 export { default as Library } from './library.svg';
+export { default as Melody } from './melody.svg';
 export { default as MenuBurger } from './menu.svg';
 export { default as MenuList } from './menu-list.svg';
 export { default as MenuTile } from './menu-tile.svg';

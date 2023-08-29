@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 
+import { Library } from '@/entities/Library';
 import { cn } from '@/shared/lib/classNames';
 import { ClearButton } from '@/shared/ui/Button/ClearButton/ClearButton';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
@@ -33,6 +34,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
             <Icon type={'filled'} name={'Library'} width={24} height={24} />
           </ClearButton>
         </header>
+        <Library collapsed={collapsed} />
       </div>
     );
   }
@@ -48,10 +50,13 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>
       </header>
+      {/*
       <HStack justify={'between'} style={{ padding: '0 16px' }}>
-        {/* search */}
+
         <Select value={sortByValue} onChange={setSortByValue} items={selectItems} label={'Sort By'} />
       </HStack>
+      */}
+      <Library collapsed={collapsed} />
     </div>
   );
 };

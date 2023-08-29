@@ -1,0 +1,39 @@
+.LibraryItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--rounded-sm);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--background-highlight);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--outline-color);
+  }
+}
+
+.image {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-subdued);
+  flex-shrink: 0;
+}
+
+.fallback {
+  background-color: var(--extracted-entity-color, #282828);
+  border-radius: var(--rounded-sm);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}

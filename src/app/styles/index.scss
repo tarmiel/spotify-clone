@@ -4,8 +4,6 @@
 @import 'fonts/fonts';
 
 html {
-  scrollbar-color: hsl(0deg 0% 100% / 30%) transparent;
-  scrollbar-width: auto;
   background-color: #121212;
   height: 100%;
 }
@@ -16,6 +14,11 @@ html {
 
 *::-webkit-scrollbar-thumb {
   background-color: hsl(0deg 0% 100% / 30%);
+}
+
+* {
+  scrollbar-color: hsl(0deg 0% 100% / 30%) transparent;
+  scrollbar-width: thin;
 }
 
 body,

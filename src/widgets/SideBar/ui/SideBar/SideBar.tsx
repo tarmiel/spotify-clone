@@ -7,6 +7,7 @@ import { SideBarLibrary } from '../SideBarLibrary/ui/SideBarLibrary';
 import { SideBarNav } from '../SideBarNav';
 
 import styles from './SideBar.module.scss';
+
 interface ISideBarProps {
   className?: string;
 }
