@@ -57,6 +57,20 @@
   border-radius: var(--rounded-md);
   background-color: var(--background-base);
   width: 100%;
+
+  .spacer {
+    height: 64px;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+  }
+
+  .main {
+    padding-top: 64px;
+    padding-inline: var(--content-spacing);
+    min-height: calc(100vh - 673px);
+    overflow-y: auto;
+  }
 }
 
 .rightbar {
