@@ -1,0 +1,92 @@
+export const genres = [
+  {
+    id: '0JQ5DArNBzkmxXHCqFLx2J',
+    label: 'Podcasts',
+    img: 'https://i.scdn.co/image/ab6765630000ba8a9417936d038e7a2f8dee2554',
+    backgroundColor: '#e13300',
+  },
+  {
+    id: '0JQ5DAozXW0GUBAKjHsifL',
+    label: 'Live Events',
+    img: 'https://concerts.spotifycdn.com/images/live-events_category-image.jpg',
+    backgroundColor: '#7358ff',
+  },
+  {
+    id: '0JQ5DAt0tbjZptfcdMSKl3',
+    label: 'Made For You',
+    img: 'https://t.scdn.co/images/ea364e99656e46a096ea1df50f581efe',
+    backgroundColor: '#1e3264',
+  },
+  {
+    id: '0JQ5DAozXW0GUBAKjHsifU',
+    label: 'New releases',
+    img: 'https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112',
+    backgroundColor: '#E8115B',
+  },
+  {
+    id: '0JQ5DAqbMKFEC4WFtoNRpw',
+    label: 'Pop',
+    img: 'https://i.scdn.co/image/ab67fb8200005cafa862ab80dd85682b37c4e768',
+    backgroundColor: '#148a08',
+  },
+  {
+    id: '0JQ5DAqbMKFQ00XGBls6ym',
+    label: 'Hip-Hop',
+    img: 'https://i.scdn.co/image/ab67fb8200005caf7e11c8413dc33c00740579c1',
+    backgroundColor: '#bc5900',
+  },
+  {
+    id: '0JQ5DAqbMKFDXXwE9BDJAr',
+    label: 'Rock',
+    img: 'https://i.scdn.co/image/ab67fb8200005cafae7e69beb88f16969641b53e',
+    backgroundColor: '#e91429',
+  },
+  {
+    id: '0JQ5DAqbMKFzHmL4tf05da',
+    label: 'Mood',
+    img: 'https://i.scdn.co/image/ab67fb8200005caf271f9d895003c5f5561c1354',
+    backgroundColor: '#e1118c',
+  },
+  {
+    id: '0JQ5DAudkNjCgYMM0TZXDr',
+    label: 'Charts',
+    img: 'https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg',
+    backgroundColor: '#8D67AB',
+  },
+  {
+    id: '0JQ5DAqbMKFHOzuVTgTizF',
+    label: 'Dance/Electronic',
+    img: 'https://i.scdn.co/image/ab67fb8200005cafdfdaac1cf9574a196ca25196',
+    backgroundColor: '#d84000',
+  },
+  {
+    id: '0JQ5DAqbMKFFzDl7qN9Apr',
+    label: 'Chill',
+    img: 'https://i.scdn.co/image/ab67fb8200005caf47e942f5bea637f4f4760170',
+    backgroundColor: '#d84000',
+  },
+  {
+    id: '0JQ5DAqbMKFCWjUTdzaG0e',
+    label: 'Indie',
+    img: 'https://i.scdn.co/image/ab67fb8200005cafa1a252e3a815b65778d8c2aa',
+    backgroundColor: '#e91429',
+  },
+  {
+    id: '0JQ5DAqbMKFAXlCG6QvYQ4',
+    label: 'Workout',
+    img: 'https://i.scdn.co/image/ab67706f000000029249b35f23fb596b6f006a15',
+    backgroundColor: '#777777',
+  },
+  {
+    id: '0JQ5DAtOnAEpjOgUKwXyxj',
+    label: 'Discover',
+    img: 'https://t.scdn.co/images/d0fb2ab104dc4846bdc56d72b0b0d785.jpeg',
+    backgroundColor: '#8D67AB',
+  },
+  {
+    id: '0JQ5DAqbMKFy78wprEpAjl',
+    label: 'Folk & Acoustic',
+    img: 'https://i.scdn.co/image/ab67fb8200005cafcc70a3c2e4c71398708bdc4a',
+    backgroundColor: '#bc5900',
+  },
+];

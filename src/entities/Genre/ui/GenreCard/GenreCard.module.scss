@@ -1,0 +1,30 @@
+.GenreCard {
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.label {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  padding: 16px;
+  position: absolute;
+}
+
+.image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100px;
+  transform: rotate(25deg) translate(18%, -2%);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+}

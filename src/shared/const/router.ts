@@ -10,5 +10,6 @@ export const APP_ROUTES = {
   playlist: (id: string) => `/playlist/${id}`,
   artist: (id: string) => `/artist/${id}`,
   user: (id: string) => `/user/${id}`,
+  genre: (id: string) => `/genre/${id}`,
   forbidden: '/forbidden',
 } as const;

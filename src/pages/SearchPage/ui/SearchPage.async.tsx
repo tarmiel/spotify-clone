@@ -2,18 +2,18 @@ import { lazy, Suspense } from 'react';
 
 import { PageLoader } from '@/widgets/PageLoader';
 
-const HomePage = lazy(
+const SearchPage = lazy(
   () =>
     new Promise((resolve) => {
       // @ts-ignore
-      setTimeout(() => resolve(import('./HomePage')), 1500);
+      setTimeout(() => resolve(import('./SearchPage')), 1500);
     }),
 );
 
-export const HomePageAsync = () => {
+export const SearchPageAsync = () => {
   return (
     <Suspense fallback={<PageLoader />}>
-      <HomePage />
+      <SearchPage />
     </Suspense>
   );
 };

@@ -68,6 +68,7 @@
   .main {
     padding-top: 64px;
     padding-inline: var(--content-spacing);
+    padding-bottom: var(--content-spacing);
     min-height: calc(100vh - 673px);
     overflow-y: auto;
   }

@@ -4,6 +4,7 @@ import { AuthGuard, GuestGuard } from '@/entities/Session';
 import { LoginPage } from '@/pages/auth';
 import { HomePage } from '@/pages/HomePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { SearchPage } from '@/pages/SearchPage';
 import { APP_ROUTES } from '@/shared/const/router';
 import { AuthLayout } from '@/shared/layouts/AuthLayout';
 import { MainLayout } from '@/shared/layouts/MainLayout';
@@ -20,7 +21,7 @@ const AppRouter = () => {
         },
         {
           path: APP_ROUTES.search,
-          element: <div>SearchPage</div>,
+          element: <SearchPage />,
         },
         {
           path: APP_ROUTES.playlist(':id'),
@@ -33,6 +34,10 @@ const AppRouter = () => {
         {
           path: APP_ROUTES.user(':id'),
           element: <div>user</div>,
+        },
+        {
+          path: APP_ROUTES.genre(':id'),
+          element: <div>genre</div>,
         },
       ],
     },
