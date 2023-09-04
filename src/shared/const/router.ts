@@ -7,6 +7,7 @@ export const APP_ROUTES = {
   },
   collection: '/collection',
   preferences: '/preferences',
+  section: (id: string) => `/section/${id}`,
   playlist: (id: string) => `/playlist/${id}`,
   artist: (id: string) => `/artist/${id}`,
   user: (id: string) => `/user/${id}`,

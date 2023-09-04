@@ -1,0 +1,13 @@
+.MediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-auto-rows: 0;
+  grid-template-rows: 1fr;
+  overflow-y: hidden;
+  column-gap: var(--content-spacing);
+}
+
+.fullGrid {
+  grid-auto-rows: 1fr;
+  row-gap: var(--content-spacing);
+}

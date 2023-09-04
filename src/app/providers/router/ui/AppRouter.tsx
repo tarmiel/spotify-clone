@@ -39,6 +39,10 @@ const AppRouter = () => {
           path: APP_ROUTES.genre(':id'),
           element: <div>genre</div>,
         },
+        {
+          path: APP_ROUTES.section(':id'),
+          element: <div>section</div>,
+        },
       ],
     },
   ];
