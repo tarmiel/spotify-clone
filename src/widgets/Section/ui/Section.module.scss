@@ -1,5 +1,5 @@
 .Section {
-  --shelf-min-height: 300px;
+  --shelf-min-height: 200px;
 
   contain-intrinsic-size: auto var(--shelf-min-height);
   display: flex;

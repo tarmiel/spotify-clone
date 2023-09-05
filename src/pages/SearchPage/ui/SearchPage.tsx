@@ -2,9 +2,11 @@ import React, { FC } from 'react';
 
 import { GenreList } from '@/entities/Genre';
 
+import styles from './SearchPage.module.scss';
+
 const SearchPage: FC = () => {
   return (
-    <section style={{ minHeight: '300px' }}>
+    <section className={styles.SearchPage}>
       <GenreList title={'Browse All'} />
     </section>
   );

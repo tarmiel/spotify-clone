@@ -1,0 +1,54 @@
+.Card {
+  position: relative;
+  height: var(--item-height);
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: hsl(0deg 0% 100% / 10%);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: hsl(0deg 0% 100% / 20%);
+
+    .playBtn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.image {
+  height: var(--item-height);
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  background-color: hsl(0deg 0% 100% / 20%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 0 16px;
+  min-width: 0;
+}
+
+.playBtn {
+  position: relative;
+  bottom: 8px;
+  right: 8px;
+  border-radius: 500px;
+  box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  margin-left: 8px;
+}

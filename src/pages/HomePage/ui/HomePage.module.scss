@@ -1,0 +1,31 @@
+.HomePage {
+  --page-header-bg: rgb(72 32 176);
+
+  min-height: calc(100vh - 673px);
+  overflow-y: auto;
+  position: relative;
+}
+
+.header {
+  background-color: var(--page-header-bg);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgb(0 0 0 / 60%)),
+    to(var(--background-base))
+  ),
+    var(--background-noise);
+  background-image: linear-gradient(rgb(0 0 0 / 60%) 0, var(--background-base) 100%), var(--background-noise);
+  height: 332px;
+  margin-top: -64px;
+  position: absolute;
+  transition: background 1s ease;
+  width: 100%;
+}
+
+.content {
+  padding-top: 64px;
+  padding-inline: var(--content-spacing);
+  padding-bottom: var(--content-spacing);
+}

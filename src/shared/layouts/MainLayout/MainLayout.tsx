@@ -20,9 +20,9 @@ export const MainLayout = memo(() => {
       </div>
       <div className={styles.content}>
         {/* <div className={styles.spacer}></div> */}
-        <div className={styles.main}>
-          <Outlet />
-        </div>
+        {/* <div className={styles.main}> */}
+        <Outlet />
+        {/* </div> */}
       </div>
       {/* <div className={styles.rightbar}>{rightbar}</div> */}
       <div className={styles.footer}></div>
