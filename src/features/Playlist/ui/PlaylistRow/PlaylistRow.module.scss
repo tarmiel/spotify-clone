@@ -1,0 +1,51 @@
+.PlaylistRow {
+  border: 1px solid transparent;
+  border-radius: var(--rounded-sm);
+  height: 56px;
+  position: relative;
+
+  &:hover {
+    background-color: hsl(0deg 0% 100% / 10%);
+
+    .num {
+      display: none;
+    }
+
+    .playBtn {
+      opacity: 1;
+      pointer-events: auto;
+      position: absolute;
+    }
+
+    .contextBtn {
+      opacity: 1;
+    }
+  }
+}
+
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16px;
+  min-width: 16px;
+  height: 16px;
+  width: 16px;
+
+  .num {
+    display: inline-block;
+  }
+
+  .playBtn {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+.contextBtn {
+  position: absolute;
+  right: 8px;
+  opacity: 0;
+}

@@ -4,6 +4,7 @@ import { AuthGuard, GuestGuard } from '@/entities/Session';
 import { LoginPage } from '@/pages/auth';
 import { HomePage } from '@/pages/HomePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { PlaylistPage } from '@/pages/PlaylistPage';
 import { SearchPage } from '@/pages/SearchPage';
 import { APP_ROUTES } from '@/shared/const/router';
 import { AuthLayout } from '@/shared/layouts/AuthLayout';
@@ -25,11 +26,19 @@ const AppRouter = () => {
         },
         {
           path: APP_ROUTES.playlist(':id'),
-          element: <div>playlist</div>,
+          element: <PlaylistPage />,
         },
         {
           path: APP_ROUTES.artist(':id'),
           element: <div>artist</div>,
+        },
+        {
+          path: APP_ROUTES.track(':id'),
+          element: <div>track</div>,
+        },
+        {
+          path: APP_ROUTES.album(':id'),
+          element: <div>album</div>,
         },
         {
           path: APP_ROUTES.user(':id'),

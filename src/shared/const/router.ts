@@ -10,6 +10,8 @@ export const APP_ROUTES = {
   section: (id: string) => `/section/${id}`,
   playlist: (id: string) => `/playlist/${id}`,
   artist: (id: string) => `/artist/${id}`,
+  track: (id: string) => `/track/${id}`,
+  album: (id: string) => `/album/${id}`,
   user: (id: string) => `/user/${id}`,
   genre: (id: string) => `/genre/${id}`,
   forbidden: '/forbidden',

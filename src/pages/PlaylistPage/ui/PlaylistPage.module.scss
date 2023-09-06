@@ -1,0 +1,104 @@
+.PlaylistPage {
+  --page-bg: rgb(80 56 160);
+
+  min-height: calc(673px);
+  overflow-y: auto;
+  position: relative;
+}
+
+.playlistHeader {
+  max-height: 400px;
+  min-height: 340px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  max-width: var(--content-max-width);
+  padding: 0 var(--content-spacing);
+
+  .headerbg {
+    background-color: var(--page-bg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgb(0 0 0 / 50%))),
+      var(--background-noise);
+    background-image: linear-gradient(transparent 0, rgb(0 0 0 / 50%) 100%), var(--background-noise);
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* .headerNoiseBg {
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5))),
+      var(--background-noise);
+    background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%), var(--background-noise);
+  } */
+
+  /* .headerbg,
+  .headerNoiseBg {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  } */
+}
+
+.headerContent {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--content-spacing);
+  gap: var(--content-spacing);
+
+  .image {
+    height: 192px;
+    width: 192px;
+    flex-shrink: 0;
+
+    img {
+      height: 100%;
+      box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+    }
+
+    @media (width >= 1280px) {
+      height: 232px;
+      width: 232px;
+    }
+  }
+}
+
+.playlistContent {
+  max-width: var(--content-max-width);
+  padding: 0 var(--content-spacing);
+  height: 100%;
+  position: relative;
+  z-index: 0;
+
+  .contentTopBg {
+    background-color: var(--page-bg);
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgb(0 0 0 / 60%)),
+      to(var(--background-base))
+    ),
+      var(--background-noise);
+    background-image: linear-gradient(rgb(0 0 0 / 60%) 0, var(--background-base) 100%), var(--background-noise);
+    position: absolute;
+    left: 0;
+    height: 232px;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.controls {
+  padding-block: var(--content-spacing);
+  display: flex;
+}

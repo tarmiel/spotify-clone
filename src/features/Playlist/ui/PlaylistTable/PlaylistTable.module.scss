@@ -1,0 +1,17 @@
+.PlaylistTable {
+  th {
+    font-size: 0.875rem;
+    color: var(--text-subdued);
+    font-weight: 400;
+  }
+}
+
+.tableHeader {
+  position: sticky;
+  z-index: 2;
+  top: 64px;
+  margin-bottom: 16px;
+  align-items: center;
+  border-bottom: 1px solid hsl(0deg 0% 100% / 10%);
+  height: 36px;
+}

@@ -1,0 +1,24 @@
+.PlaylistGrid {
+  grid-gap: 16px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: [index] 16px [first] 6fr [var1] 4fr [var2] 3fr [last] minmax(120px, 1fr);
+  padding: 0 16px;
+
+  th,
+  td {
+    display: flex;
+  }
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    justify-self: end;
+    font-size: 1rem;
+  }
+
+  th:last-child,
+  td:last-child {
+    justify-self: end;
+    margin-right: 32px;
+  }
+}
