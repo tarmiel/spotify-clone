@@ -2,18 +2,18 @@ import { lazy, Suspense } from 'react';
 
 import { PageLoader } from '@/widgets/PageLoader';
 
-const LoginPage = lazy(
+const RegisterPage = lazy(
   () =>
     new Promise((resolve) => {
       // @ts-ignore
-      setTimeout(() => resolve(import('./LoginPage')), 1000);
+      setTimeout(() => resolve(import('./RegisterPage')), 1000);
     }),
 );
 
-export const LoginPageAsync = () => {
+export const RegisterPageAsync = () => {
   return (
     <Suspense fallback={<PageLoader />}>
-      <LoginPage />
+      <RegisterPage />
     </Suspense>
   );
 };

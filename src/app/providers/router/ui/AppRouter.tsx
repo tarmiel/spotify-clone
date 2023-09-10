@@ -2,6 +2,7 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 
 import { AuthGuard, GuestGuard } from '@/entities/Session';
 import { LoginPage } from '@/pages/auth';
+import { RegisterPage } from '@/pages/auth';
 import { HomePage } from '@/pages/HomePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { PlaylistPage } from '@/pages/PlaylistPage';
@@ -82,7 +83,7 @@ const AppRouter = () => {
         },
         {
           path: APP_ROUTES.auth.register,
-          element: <div>register</div>,
+          element: <RegisterPage />,
         },
       ],
     },
