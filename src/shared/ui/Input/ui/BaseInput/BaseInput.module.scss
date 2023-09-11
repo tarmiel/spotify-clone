@@ -1,0 +1,95 @@
+.inputWrapper {
+  display: inline-flex;
+  position: relative;
+
+  .right {
+    padding-right: 48px;
+  }
+
+  &:focus-within,
+  &:hover {
+    .addonLeft {
+      color: var(--text-base);
+    }
+  }
+
+  .addonRight button {
+    outline: none;
+  }
+}
+
+.BaseInput {
+  appearance: none;
+  background-image: none;
+  border: 0;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  transition:
+    box-shadow 0.1s ease-in-out 0s,
+    color 0.1s ease-in-out 0s;
+  inline-size: 100%;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  margin-block: 0;
+  outline: none;
+  color: var(--text-base, #000);
+  background-color: var(--background-base, #fff);
+
+  &::placeholder {
+    text-overflow: ellipsis;
+  }
+
+  &.error {
+    box-shadow: inset 0 0 0 1px var(--essential-negative, #e91429);
+
+    &:hover,
+    &[readonly]:hover {
+      box-shadow: inset 0 0 0 1px var(--essential-negative, #e91429);
+    }
+
+    &:focus,
+    &[readonly]:focus {
+      box-shadow: inset 0 0 0 3px var(--essential-negative, #e91429);
+    }
+  }
+}
+
+.full {
+  width: 100%;
+}
+
+.rounded-sm {
+  border-radius: var(--rounded-sm, 4px);
+}
+
+.rounded-md {
+  border-radius: var(--rounded-md, 8px);
+}
+
+.rounded-lg {
+  border-radius: var(--rounded-lg, 50px);
+}
+
+.addonLeft,
+.addonRight {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.addonLeft {
+  aspect-ratio: 1 / 2;
+  padding: 8px;
+  left: 0;
+}
+
+.addonRight {
+  right: 4px;
+}
+
+.addonLeft + .BaseInput {
+  padding-left: 32px;
+}

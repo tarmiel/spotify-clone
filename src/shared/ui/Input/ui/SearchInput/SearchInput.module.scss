@@ -1,0 +1,21 @@
+.SearchInput {
+  input {
+    background-color: var(--background-elevated-base);
+    box-shadow: none;
+    border: 0;
+    font-size: 0.875rem;
+    padding-inline: 14px;
+    padding-block-start: var(--spacer-2, 8px);
+    padding-block-end: var(--spacer-2, 8px);
+    min-block-size: var(--control-size-md, 48px);
+
+    &:hover {
+      background-color: var(--background-elevated-highlight);
+      box-shadow: 0 0 0 1px hsl(0deg 0% 100% / 20%);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px #fff;
+    }
+  }
+}
