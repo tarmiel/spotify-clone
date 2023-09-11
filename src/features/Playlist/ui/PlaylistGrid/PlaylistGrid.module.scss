@@ -8,6 +8,7 @@
   th,
   td {
     display: flex;
+    min-width: 0;
   }
 
   th:nth-child(1),

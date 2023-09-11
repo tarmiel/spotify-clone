@@ -6,7 +6,7 @@ import AppLink from '@/shared/ui/AppLink/AppLink';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Span } from '@/shared/ui/Typography';
+import { P, Span } from '@/shared/ui/Typography';
 
 import { PlaylistTrack } from '../../model/types/track';
 import { PlaylistGrid } from '../PlaylistGrid/PlaylistGrid';
@@ -34,12 +34,19 @@ export const PlaylistRow: FC<IPlaylistRowProps> = ({ number, track, className })
         <HStack gap={'16'} className={styles.info}>
           <img src={track.info.album.image} alt={track.info.name} width={40} height={40} />
           <VStack>
-            <AppLink to={APP_ROUTES.track(track.info.id)} underline>
+            <AppLink to={APP_ROUTES.track(track.info.id)} underline truncate>
               {track.info.name}
             </AppLink>
-            <div>
+            <div className={styles.artistsList}>
               {track.info.artists.map((artist) => (
-                <AppLink key={artist.id} to={APP_ROUTES.artist(artist.id)} underline variant={'subdued'} size={'sm'}>
+                <AppLink
+                  key={artist.id}
+                  to={APP_ROUTES.artist(artist.id)}
+                  underline
+                  variant={'subdued'}
+                  size={'sm'}
+                  truncate
+                >
                   {artist.name}
                 </AppLink>
               ))}
@@ -48,7 +55,7 @@ export const PlaylistRow: FC<IPlaylistRowProps> = ({ number, track, className })
         </HStack>
       </td>
       <td>
-        <AppLink to={APP_ROUTES.album(track.info.album.id)} underline variant={'subdued'} size={'sm'}>
+        <AppLink to={APP_ROUTES.album(track.info.album.id)} underline variant={'subdued'} size={'sm'} truncate>
           {track.info.album.name}
         </AppLink>
       </td>

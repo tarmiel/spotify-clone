@@ -1,19 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
-import { PageLoader } from '@/widgets/PageLoader';
-
-const PlaylistPage = lazy(
+export const PlaylistPageAsync = lazy(
   () =>
     new Promise((resolve) => {
       // @ts-ignore
       setTimeout(() => resolve(import('./PlaylistPage')), 1500);
     }),
 );
-
-export const PlaylistPageAsync = () => {
-  return (
-    <Suspense fallback={<PageLoader />}>
-      <PlaylistPage />
-    </Suspense>
-  );
-};

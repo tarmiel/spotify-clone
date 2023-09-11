@@ -11,10 +11,21 @@ interface IAppLinkProps extends LinkProps {
   bold?: boolean;
   underline?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg';
+  truncate?: boolean;
   children?: ReactNode;
 }
 
-const AppLink: FC<IAppLinkProps> = ({ to, children, variant, size = 'md', underline, bold, className, ...props }) => {
+const AppLink: FC<IAppLinkProps> = ({
+  to,
+  children,
+  variant,
+  size = 'md',
+  underline,
+  truncate,
+  bold,
+  className,
+  ...props
+}) => {
   const cls = [
     styles.AppLink,
     variant && styles[variant],
@@ -23,6 +34,7 @@ const AppLink: FC<IAppLinkProps> = ({ to, children, variant, size = 'md', underl
     {
       [styles.underline]: underline,
       [styles.bold]: bold,
+      [styles.truncate]: truncate,
     },
   ];
 

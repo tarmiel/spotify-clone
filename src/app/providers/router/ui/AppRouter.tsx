@@ -1,4 +1,4 @@
-import { RouteObject, useRoutes } from 'react-router-dom';
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 
 import { AuthGuard, GuestGuard } from '@/entities/Session';
 import { LoginPage } from '@/pages/auth';
@@ -77,6 +77,10 @@ const AppRouter = () => {
       path: '/auth',
       element: <AuthLayout />,
       children: [
+        {
+          path: '',
+          element: <Navigate to={APP_ROUTES.auth.login} replace={true} />,
+        },
         {
           path: APP_ROUTES.auth.login,
           element: <LoginPage />,

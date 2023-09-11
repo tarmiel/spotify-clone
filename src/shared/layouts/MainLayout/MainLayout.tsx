@@ -1,9 +1,10 @@
-import { memo, ReactElement } from 'react';
+import { memo, ReactElement, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { cn } from '@/shared/lib/classNames/classNames';
 import { LayoutResizer } from '@/shared/ui/LayoutResizer/LayoutResizer';
 import { Header } from '@/widgets/Header';
+import { PageLoader } from '@/widgets/PageLoader';
 import { SideBar } from '@/widgets/SideBar';
 
 import styles from './MainLayout.module.scss';
@@ -21,7 +22,9 @@ export const MainLayout = memo(() => {
       <div className={styles.content}>
         {/* <div className={styles.spacer}></div> */}
         {/* <div className={styles.main}> */}
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
         {/* </div> */}
       </div>
       {/* <div className={styles.rightbar}>{rightbar}</div> */}
