@@ -50,12 +50,11 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>
       </header>
-      {/*
-      <HStack justify={'between'} style={{ padding: '0 16px' }}>
 
+      <HStack justify={'between'} style={{ padding: '0 16px' }}>
         <Select value={sortByValue} onChange={setSortByValue} items={selectItems} label={'Sort By'} />
       </HStack>
-      */}
+
       <Library collapsed={collapsed} />
     </div>
   );

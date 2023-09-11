@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 
@@ -10,10 +10,12 @@ interface IClearButtonProps extends IButtonProps {
   withIcon?: boolean;
 }
 
-export const ClearButton: FC<IClearButtonProps> = ({ className, withIcon, children, ...props }) => {
-  return (
-    <Button className={cn(styles.ClearButton, { [styles.withIcon]: withIcon }, className)} {...props}>
-      {children}
-    </Button>
-  );
-};
+export const ClearButton = React.forwardRef<HTMLButtonElement, IClearButtonProps>(
+  ({ className, withIcon, children, ...props }, ref) => {
+    return (
+      <Button className={cn(styles.ClearButton, { [styles.withIcon]: withIcon }, className)} ref={ref} {...props}>
+        {children}
+      </Button>
+    );
+  },
+);

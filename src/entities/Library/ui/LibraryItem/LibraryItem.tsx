@@ -35,7 +35,7 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
   if (collapsed) {
     return (
       <AppLink to={APP_ROUTES.playlist('1')}>
-        <li className={cn(styles.LibraryItem, className)} tabIndex={0}>
+        <li className={cn(styles.LibraryItem, className)}>
           <div className={cn(styles.image, { [styles.fallback]: !image })}>
             <Avatar
               rounded={type === 'Artist' ? 'full' : 'sm'}
@@ -51,7 +51,7 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
 
   return (
     <AppLink to={APP_ROUTES.playlist('1')}>
-      <li className={cn(styles.LibraryItem, className)} tabIndex={0}>
+      <li className={cn(styles.LibraryItem, className)}>
         <div className={cn(styles.image, { [styles.fallback]: !image })}>
           <Avatar
             rounded={type === 'Artist' ? 'full' : 'sm'}
