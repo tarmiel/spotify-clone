@@ -1,0 +1,19 @@
+.label {
+  display: block;
+  color: var(--text-base);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.error {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-negative, #d31225);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
