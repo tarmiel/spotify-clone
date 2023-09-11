@@ -1,3 +1,10 @@
 .LoginForm {
   width: 100%;
 }
+
+.Fields {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}

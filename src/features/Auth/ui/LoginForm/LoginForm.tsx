@@ -1,7 +1,8 @@
 import { FC } from 'react';
+import { DevTool } from '@hookform/devtools';
 
 import { cn } from '@/shared/lib/classNames';
-import { FieldWrapper, Form } from '@/shared/ui/Form';
+import { EmailField, Form, PasswordField } from '@/shared/ui/Form';
 
 import { LoginFormSchema, LoginFormValues } from '../../model/types/loginForm';
 
@@ -19,15 +20,13 @@ export const LoginForm: FC<ILoginFormProps> = ({ onSuccess, className }) => {
         onSubmit={(data) => console.log(data)}
         schema={LoginFormSchema}
         options={{ mode: 'onBlur' }}
+        className={styles.Fields}
       >
-        {({ register, formState }) => (
+        {({ register, formState, control }) => (
           <>
-            <FieldWrapper label={'Email'} error={formState.errors.email}>
-              <input type={'email'} {...register('email')} />
-            </FieldWrapper>
-            <FieldWrapper label={'Password'} error={formState.errors.password}>
-              <input type={'password'} {...register('password')} />
-            </FieldWrapper>
+            <EmailField label={'Email'} error={formState.errors.email} registration={register('email')} />
+            <PasswordField label={'Password'} error={formState.errors.password} registration={register('password')} />
+            <DevTool control={control} />
           </>
         )}
       </Form>
