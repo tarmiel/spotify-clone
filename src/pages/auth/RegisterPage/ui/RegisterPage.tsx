@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { RegisterForm } from '@/features/Auth';
 import { APP_ROUTES } from '@/shared/const/router';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import { OutlinedButton } from '@/shared/ui/Button/OutlinedButton/OutlinedButton';
@@ -10,6 +12,7 @@ import { H1, Span } from '@/shared/ui/Typography';
 import styles from './RegisterPage.module.scss';
 
 const RegisterPage: FC = () => {
+  const navigate = useNavigate();
   return (
     <VStack className={styles.RegisterPage} gap={'32'} align={'center'} max>
       <HStack gap={'32'}>
@@ -27,8 +30,8 @@ const RegisterPage: FC = () => {
           Sign up with Apple
         </OutlinedButton>
       </VStack>
-      <Divider />
-      Register Form
+      <Divider>OR</Divider>
+      <RegisterForm onSuccess={() => navigate(APP_ROUTES.home)} className={styles.content} />
       <Divider />
       <HStack gap={'8'}>
         <Span size={'md'}>Already have an account?</Span>

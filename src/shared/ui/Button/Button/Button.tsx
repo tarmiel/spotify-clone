@@ -12,7 +12,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
-  const { className, children, disabled, full, type, ...otherProps } = props;
+  const { className, children, disabled, full, type = 'button', ...otherProps } = props;
 
   const cls = [styles.Button, { [styles.full]: full, [styles.disabled]: disabled }, className];
 

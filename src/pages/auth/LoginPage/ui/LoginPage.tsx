@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { LoginForm } from '@/features/Auth';
 import { APP_ROUTES } from '@/shared/const/router';
@@ -13,6 +14,7 @@ import { H1, Span } from '@/shared/ui/Typography';
 import styles from './LoginPage.module.scss';
 
 const LoginPage: FC = () => {
+  const navigate = useNavigate();
   return (
     <VStack className={styles.LoginPage} gap={'32'} align={'center'} max>
       <HStack gap={'32'}>
@@ -31,7 +33,9 @@ const LoginPage: FC = () => {
         </OutlinedButton>
       </VStack>
       <Divider />
-      <LoginForm className={styles.content} />
+
+      <LoginForm onSuccess={() => navigate(APP_ROUTES.home)} className={styles.content} />
+
       <AppLink to={APP_ROUTES.auth.login} variant={'base'} underline>
         Forget password?
       </AppLink>

@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-import { NavigationType, useNavigate, useNavigationType } from 'react-router-dom';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
-import { useHistoryStack } from '@/shared/lib/hooks/useHistoryStack/useHistoryStack';
-import { Avatar } from '@/shared/ui/Avatar';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { HStack } from '@/shared/ui/Stack';
 
@@ -14,7 +12,6 @@ interface IHeaderProps {
 }
 
 const Header: FC<IHeaderProps> = ({ className }) => {
-  const type = useNavigationType();
   const navigate = useNavigate();
 
   const goBack = () => navigate(-1);
@@ -22,7 +19,7 @@ const Header: FC<IHeaderProps> = ({ className }) => {
   const goProfile = () => navigate(APP_ROUTES.user('1'));
 
   return (
-    <header className={cn(styles.Header)}>
+    <header className={cn(styles.Header, className)}>
       <div className={styles.back}></div>
       <HStack gap={'8'}>
         <IconButton
