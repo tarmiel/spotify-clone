@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { DevTool } from '@hookform/devtools';
 
+import { api } from '@/shared/api/api';
 import { cn } from '@/shared/lib/classNames';
 import { ClearButton, PrimaryButton } from '@/shared/ui/Button';
 import { EmailField, Form, PasswordField } from '@/shared/ui/Form';
@@ -15,14 +16,24 @@ interface ILoginFormProps {
 }
 
 export const LoginForm: FC<ILoginFormProps> = ({ onSuccess, className }) => {
+  // const onSubmit = async (data: LoginFormValues) => {
+  //   try {
+  //     const response = await api.post(`${__API__}/api/auth/login`, data);
+
+  //     console.log(response);
+  //     const token = response.data.token;
+  //     if (token) {
+  //       localStorage.setItem('token', JSON.stringify(token));
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   return (
     <div className={cn(styles.LoginForm, className)}>
       <Form<LoginFormValues, typeof LoginFormSchema>
-        onSubmit={async (data) => {
-          console.log(data);
-
-          return onSuccess?.();
-        }}
+        onSubmit={(data) => console.log(data)}
         schema={LoginFormSchema}
         options={{ mode: 'onBlur' }}
         className={styles.Fields}
