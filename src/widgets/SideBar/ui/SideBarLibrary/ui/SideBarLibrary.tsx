@@ -1,7 +1,9 @@
 import React, { FC, useState } from 'react';
 
 import { Library } from '@/entities/Library';
+import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
+import AppLink from '@/shared/ui/AppLink/AppLink';
 import { ClearButton } from '@/shared/ui/Button/ClearButton/ClearButton';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
@@ -46,7 +48,9 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <Icon type={'filled'} name={'Library'} width={24} height={24} /> Your Library
         </ClearButton>
         <HStack gap={'8'}>
-          <IconButton icon={{ type: 'outlined', name: 'Plus' }} />
+          <AppLink to={APP_ROUTES.auth.login}>
+            <IconButton icon={{ type: 'outlined', name: 'Plus' }} />
+          </AppLink>
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>
       </header>

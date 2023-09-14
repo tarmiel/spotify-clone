@@ -1,13 +1,17 @@
 import { AxiosInstance } from 'axios';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
+import { SessionSchema } from '@/entities/Session';
+import { AuthSchema } from '@/features/Auth';
 import { rtkApi } from '@/shared/api/rtkApi';
 
 export interface StateSchema {
   // sync reducers
+  session: SessionSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+
+  auth?: AuthSchema;
   // async reducers
-  login?: { l: string };
 }
 
 export type StateSchemaKey = keyof StateSchema;

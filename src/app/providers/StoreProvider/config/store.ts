@@ -1,5 +1,6 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
+import { sessionReducer } from '@/entities/Session';
 import { api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
 
@@ -9,6 +10,7 @@ import { StateSchema, ThunkExtraArg } from './StateSchema';
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
+    session: sessionReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
   };
 

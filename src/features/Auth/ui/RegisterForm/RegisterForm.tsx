@@ -1,11 +1,13 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { DevTool } from '@hookform/devtools';
 
 import { cn } from '@/shared/lib/classNames';
 import { PrimaryButton } from '@/shared/ui/Button';
 import { EmailField, Form, PasswordField, TextField } from '@/shared/ui/Form';
-import { TExternalFormError } from '@/shared/ui/Form/ui/Form/Form';
 
+import { getRegisterErrors } from '../../model/selectors/getRegisterErrors/getRegisterErrors';
+import { useAuthHandlers } from '../../model/services/authHandlers/auth';
 import { RegisterFormSchema, RegisterFormValues } from '../../model/types/registerForm';
 
 import styles from './RegisterForm.module.scss';
@@ -16,15 +18,16 @@ interface IRegisterFormProps {
 }
 
 export const RegisterForm: FC<IRegisterFormProps> = ({ onSuccess, className }) => {
+  const { register: registerHandler } = useAuthHandlers(onSuccess);
+  const errors = useSelector(getRegisterErrors);
+
   return (
     <div className={cn(styles.RegisterForm, className)}>
       <Form<RegisterFormValues, typeof RegisterFormSchema>
-        onSubmit={async (data) => {
-          console.log(data);
-          onSuccess?.();
-        }}
         schema={RegisterFormSchema}
+        onSubmit={registerHandler}
         options={{ mode: 'onBlur' }}
+        errors={errors}
         className={styles.Fields}
       >
         {({ register, formState, control }) => (

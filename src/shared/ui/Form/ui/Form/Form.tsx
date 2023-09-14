@@ -34,10 +34,12 @@ export const Form = <TFormValues extends FieldValues, Schema extends ZodSchema<a
   const methods = useForm<TFormValues>({ ...options, resolver: schema && zodResolver(schema) });
   useEffect(() => {
     errors?.forEach((error) => {
-      methods.setError(error.field, {
-        type: error.type,
-        message: error.message,
-      });
+      if (error.field) {
+        methods.setError(error.field, {
+          type: error.type,
+          message: error.message,
+        });
+      }
     });
   }, [errors]);
   return (

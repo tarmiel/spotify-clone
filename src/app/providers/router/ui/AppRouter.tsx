@@ -8,8 +8,9 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { PlaylistPage } from '@/pages/PlaylistPage';
 import { SearchPage } from '@/pages/SearchPage';
 import { APP_ROUTES } from '@/shared/const/router';
-import { AuthLayout } from '@/shared/layouts/AuthLayout';
-import { MainLayout } from '@/shared/layouts/MainLayout';
+
+import { AuthLayout } from './layouts/AuthLayout';
+import { MainLayout } from './layouts/MainLayout';
 
 const AppRouter = () => {
   const publicRoutes: RouteObject[] = [
