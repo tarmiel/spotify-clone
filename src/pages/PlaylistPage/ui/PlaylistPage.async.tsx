@@ -4,6 +4,6 @@ export const PlaylistPageAsync = lazy(
   () =>
     new Promise((resolve) => {
       // @ts-ignore
-      setTimeout(() => resolve(import('./PlaylistPage')), 1500);
+      setTimeout(() => resolve(import('./PlaylistPage')), 1000);
     }),
 );

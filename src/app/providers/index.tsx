@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { AuthMiddleware } from '@/entities/Session';
 import { AppLoader } from '@/widgets/AppLoader';
 
 import { ErrorBoundary } from './ErrorBoundary';
@@ -15,7 +16,9 @@ export const AppProvider: FC<IAppProviderProps> = ({ children }) => {
     <Suspense fallback={<AppLoader />}>
       <ErrorBoundary>
         <StoreProvider>
-          <BrowserRouter>{children}</BrowserRouter>
+          <BrowserRouter>
+            <AuthMiddleware>{children}</AuthMiddleware>
+          </BrowserRouter>
         </StoreProvider>
       </ErrorBoundary>
     </Suspense>

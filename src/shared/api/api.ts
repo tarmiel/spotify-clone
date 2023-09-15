@@ -1,10 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { LOCAL_STORAGE_TOKEN_KEY } from '../const/localstorage';
-
-interface Request extends AxiosRequestConfig {
-  isRetry?: boolean;
-}
+import storage from '../lib/storage/storage';
 
 export const api = axios.create({
   withCredentials: true,
@@ -29,13 +26,12 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 const onResponseError = async (error: AxiosError): Promise<AxiosError> => {
   if (!error.config) return Promise.reject(error);
 
-  const originalRequest: Request = error.config;
+  const originalRequest = error.config;
 
-  if (error.response && error.response.status == 401 && !originalRequest.isRetry) {
-    originalRequest.isRetry = true;
+  if (error.response && error.response.status == 401) {
     try {
       const response = await axios.get(`${__API__}/api/auth/refresh`, { withCredentials: true });
-      localStorage.setItem('token', response.data.token);
+      storage.setToken(response.data.token);
       return api.request(originalRequest);
     } catch (e) {
       console.log('Unauthorized');

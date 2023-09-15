@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { cn } from '@/shared/lib/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
