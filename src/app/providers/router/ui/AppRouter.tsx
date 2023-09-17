@@ -8,9 +8,11 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { PlaylistPage } from '@/pages/PlaylistPage';
 import { SearchPage } from '@/pages/SearchPage';
 import { APP_ROUTES } from '@/shared/const/router';
+import { lazyImport } from '@/shared/lib/lazyImport/lazyImport';
 
-import { AuthLayout } from './layouts/AuthLayout';
+// import { AuthLayout } from './layouts/AuthLayout';
 import { MainLayout } from './layouts/MainLayout';
+const { AuthLayout } = lazyImport(() => import('./layouts/AuthLayout/AuthLayout'), 'AuthLayout');
 
 const AppRouter = () => {
   const publicRoutes: RouteObject[] = [

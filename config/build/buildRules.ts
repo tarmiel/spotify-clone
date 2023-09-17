@@ -7,7 +7,14 @@ import { BuildOptions } from './types/config';
 export function buildRules(options: BuildOptions): webpack.RuleSetRule[] {
   const svgLoader = {
     test: /\.svg$/,
-    use: ['@svgr/webpack'],
+    use: [
+      {
+        loader: '@svgr/webpack',
+        options: {
+          dimensions: false,
+        },
+      },
+    ],
   };
 
   const cssLoader = buildCssLoader(options.isDev);

@@ -1,8 +1,10 @@
 import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 
-import { sessionActions, SessionDTO } from '@/entities/Session';
+import { SessionDTO } from '@/entities/Session';
 import { LOCAL_STORAGE_TOKEN_KEY } from '@/shared/const/localstorage';
 
+// eslint-disable-next-line no-restricted-imports
+import { sessionActions } from '../../entities/Session/model/slice/session';
 import storage from '../lib/storage/storage';
 
 const baseQuery = fetchBaseQuery({
@@ -36,6 +38,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       // retry the original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
+      await baseQuery('/api/auth/logout', api, extraOptions);
       api.dispatch(sessionActions.clearSessionData());
       storage.clearToken();
       // window.location.href = '/auth/login';
