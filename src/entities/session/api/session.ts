@@ -3,7 +3,7 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import { sessionActions } from '../model/slice/session';
 import { SessionDTO } from '../model/types/sessionSchema';
 
-export const sessionApiSlice = rtkApi.injectEndpoints({
+export const sessionApi = rtkApi.injectEndpoints({
   endpoints: (builder) => ({
     initSession: builder.query<SessionDTO, null>({
       query: () => ({
@@ -22,4 +22,4 @@ export const sessionApiSlice = rtkApi.injectEndpoints({
   }),
 });
 
-export const { useInitSessionQuery } = sessionApiSlice;
+export const { useInitSessionQuery } = sessionApi;

@@ -38,13 +38,12 @@ export const useAuthHandlers = (onSuccess?: () => void) => {
   const logoutHandler = useCallback(async () => {
     try {
       const response = await api.get('/api/auth/logout');
-      if (response.data) {
-        dispatch(sessionActions.clearSessionData());
-        storage.clearToken();
-        window.location.assign(window.location.origin as unknown as string);
-      }
     } catch (e) {
       console.log(e);
+    } finally {
+      dispatch(sessionActions.clearSessionData());
+      storage.clearToken();
+      window.location.assign(window.location.origin as unknown as string);
     }
   }, [dispatch, onSuccess]);
 

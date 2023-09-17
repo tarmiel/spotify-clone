@@ -3,12 +3,15 @@ import React, { FC, useState } from 'react';
 import { Library } from '@/entities/Library';
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
+import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import { ClearButton } from '@/shared/ui/Button/ClearButton/ClearButton';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
 import Select, { ISelectItem } from '@/shared/ui/Select/Select';
 import { HStack } from '@/shared/ui/Stack';
+
+import { SideBarAdSections } from '../../SideBarAdSections/SideBarAdSections';
 
 import styles from './SideBarLibrary.module.scss';
 
@@ -27,6 +30,7 @@ const selectItems: ISelectItem<string>[] = [
 
 export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse, className }) => {
   const [sortByValue, setSortByValue] = useState(selectItems[0].value);
+  const { isAuthorized } = useAuth();
 
   if (collapsed) {
     return (
@@ -36,7 +40,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
             <Icon type={'filled'} name={'Library'} width={24} height={24} />
           </ClearButton>
         </header>
-        <Library collapsed={collapsed} />
+        {isAuthorized && <Library collapsed={collapsed} />}
       </div>
     );
   }
@@ -55,11 +59,11 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
         </HStack>
       </header>
 
-      <HStack justify={'between'} style={{ padding: '0 16px' }}>
+      {/* <HStack justify={'between'} style={{ padding: '0 16px' }}>
         <Select value={sortByValue} onChange={setSortByValue} items={selectItems} label={'Sort By'} />
-      </HStack>
+      </HStack> */}
 
-      <Library collapsed={collapsed} />
+      {isAuthorized ? <Library collapsed={collapsed} /> : <SideBarAdSections />}
     </div>
   );
 };

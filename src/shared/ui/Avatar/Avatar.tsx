@@ -15,13 +15,10 @@ interface AvatarProps {
 }
 
 export const Avatar = ({ className, src, size = 48, alt, fallBackIcon, rounded }: AvatarProps) => {
-  const styles = useMemo<CSSProperties>(
-    () => ({
-      width: size,
-      height: size,
-    }),
-    [size],
-  );
+  const styles = {
+    width: size,
+    height: size,
+  };
 
   //   const fallback = <Skeleton width={size} height={size} border="50%" />;
   const fallback = 'loading...';

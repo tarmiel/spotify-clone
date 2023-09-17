@@ -1,0 +1,13 @@
+.Sections {
+  padding: 0 8px 8px;
+  overflow-y: auto;
+}
+
+.section {
+  padding: 16px 20px;
+  flex-shrink: 0;
+
+  .content {
+    margin-bottom: 20px;
+  }
+}

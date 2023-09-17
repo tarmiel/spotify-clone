@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, forwardRef, ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { cn } from '@/shared/lib/classNames';
@@ -15,34 +15,26 @@ interface IAppLinkProps extends LinkProps {
   children?: ReactNode;
 }
 
-const AppLink: FC<IAppLinkProps> = ({
-  to,
-  children,
-  variant,
-  size = 'md',
-  underline,
-  truncate,
-  bold,
-  className,
-  ...props
-}) => {
-  const cls = [
-    styles.AppLink,
-    variant && styles[variant],
-    styles[size],
-    className,
-    {
-      [styles.underline]: underline,
-      [styles.bold]: bold,
-      [styles.truncate]: truncate,
-    },
-  ];
+const AppLink = forwardRef<HTMLAnchorElement, IAppLinkProps>(
+  ({ to, children, variant, size = 'md', underline, truncate, bold, className, ...props }, ref) => {
+    const cls = [
+      styles.AppLink,
+      variant && styles[variant],
+      styles[size],
+      className,
+      {
+        [styles.underline]: underline,
+        [styles.bold]: bold,
+        [styles.truncate]: truncate,
+      },
+    ];
 
-  return (
-    <Link to={to} className={cn(cls)} {...props}>
-      {children}
-    </Link>
-  );
-};
+    return (
+      <Link to={to} className={cn(cls)} ref={ref} {...props}>
+        {children}
+      </Link>
+    );
+  },
+);
 
 export default AppLink;

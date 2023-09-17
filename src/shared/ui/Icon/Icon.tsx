@@ -11,7 +11,7 @@ export const IconsMap = {
 export type IconType = keyof typeof IconsMap;
 export type IconName<T extends IconType> = keyof (typeof IconsMap)[T];
 
-interface IIconProps<T extends IconType> extends Omit<SVGProps<SVGSVGElement>, 'name'> {
+export interface IIconProps<T extends IconType> extends Omit<SVGProps<SVGSVGElement>, 'name'> {
   type: T;
   name: IconName<T>;
 }

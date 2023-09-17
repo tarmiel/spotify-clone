@@ -1,7 +1,9 @@
+import { ForwardedRef, forwardRef } from 'react';
+
 import { cn } from '@/shared/lib/classNames';
 
 import { Icon } from '../../Icon';
-import { IconName, IconType } from '../../Icon/Icon';
+import { IconName, IconType, IIconProps } from '../../Icon/Icon';
 import { Button, IButtonProps } from '../Button/Button';
 
 import styles from './IconButton.module.scss';
@@ -11,22 +13,47 @@ interface IIconButtonProps<T extends IconType> extends IButtonProps {
   rounded?: 'full' | 'square';
   variant?: 'default' | 'highlight' | 'bg';
   size?: 'sm' | 'md' | 'lg';
-  icon: {
-    type: T;
-    name: IconName<T>;
-  };
+  icon: IIconProps<T>;
   hoverScale?: boolean;
 }
 
-export const IconButton = <T extends IconType>({
-  rounded = 'full',
-  size = 'sm',
-  variant = 'default',
-  icon,
-  className,
-  hoverScale = false,
-  ...props
-}: IIconButtonProps<T>): JSX.Element => {
+// const IconButton = <T extends IconType>({
+//   rounded = 'full',
+//   size = 'sm',
+//   variant = 'default',
+//   icon,
+//   className,
+//   hoverScale = false,
+//   ...props
+// }: IIconButtonProps<T>): JSX.Element => {
+//   const cls = [
+//     styles.IconButton,
+//     styles[variant],
+//     styles[`rounded-${rounded}`],
+//     styles[size],
+//     { [styles.hoverScale]: hoverScale },
+//     className,
+//   ];
+
+//   return (
+//     <Button className={cn(cls)} {...props}>
+//       <Icon {...icon} className={styles.icon} />
+//     </Button>
+//   );
+// };
+
+const IconButtonInner = <T extends IconType>(
+  {
+    rounded = 'full',
+    size = 'sm',
+    variant = 'default',
+    icon,
+    className,
+    hoverScale = false,
+    ...props
+  }: IIconButtonProps<T>,
+  ref?: ForwardedRef<HTMLButtonElement>,
+): JSX.Element => {
   const cls = [
     styles.IconButton,
     styles[variant],
@@ -37,8 +64,11 @@ export const IconButton = <T extends IconType>({
   ];
 
   return (
-    <Button className={cn(cls)} {...props}>
+    <Button className={cn(cls)} ref={ref} {...props}>
       <Icon {...icon} className={styles.icon} />
     </Button>
   );
 };
+export const IconButton = forwardRef(IconButtonInner) as <T extends IconType>(
+  props: IIconButtonProps<T> & { ref?: React.ForwardedRef<HTMLButtonElement> },
+) => ReturnType<typeof IconButtonInner>;
