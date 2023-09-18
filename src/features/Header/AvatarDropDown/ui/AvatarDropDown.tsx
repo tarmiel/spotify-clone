@@ -1,15 +1,12 @@
-import React, { FC, Fragment, useCallback } from 'react';
-import { Menu } from '@headlessui/react';
+import { FC, useCallback } from 'react';
 
 // eslint-disable-next-line no-restricted-imports
 import { logout } from '@/entities/Session/model/services/logoutThunk';
 import { APP_ROUTES } from '@/shared/const/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
-import { Avatar } from '@/shared/ui/Avatar';
 import { IconButton } from '@/shared/ui/Button';
-import { DropDown } from '@/shared/ui/DropDown';
-import { DropdownItem } from '@/shared/ui/DropDown/ui/DropDown';
+import { DropDown, DropdownItem } from '@/shared/ui/DropDown';
 
 interface IAvatarDropDownProps {
   className?: string;

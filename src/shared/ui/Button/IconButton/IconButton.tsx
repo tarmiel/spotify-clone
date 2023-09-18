@@ -17,31 +17,6 @@ interface IIconButtonProps<T extends IconType> extends IButtonProps {
   hoverScale?: boolean;
 }
 
-// const IconButton = <T extends IconType>({
-//   rounded = 'full',
-//   size = 'sm',
-//   variant = 'default',
-//   icon,
-//   className,
-//   hoverScale = false,
-//   ...props
-// }: IIconButtonProps<T>): JSX.Element => {
-//   const cls = [
-//     styles.IconButton,
-//     styles[variant],
-//     styles[`rounded-${rounded}`],
-//     styles[size],
-//     { [styles.hoverScale]: hoverScale },
-//     className,
-//   ];
-
-//   return (
-//     <Button className={cn(cls)} {...props}>
-//       <Icon {...icon} className={styles.icon} />
-//     </Button>
-//   );
-// };
-
 const IconButtonInner = <T extends IconType>(
   {
     rounded = 'full',

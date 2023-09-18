@@ -1,0 +1,12 @@
+.notification {
+  --toastify-color-error: var(--essential-negative);
+  --toastify-color-info: var(--essential-announcement);
+  --toastify-color-success: var(--essential-positive);
+  --toastify-color-warning: var(--essential-warning);
+  --toastify-toast-min-height: 48px;
+  --toastify-font-family: circularsp, circularsp-arab, circularsp-hebr, circularsp-cyrl, circularsp-grek,
+    circularsp-deva, sans-serif;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+}

@@ -1,20 +1,12 @@
-import React, { FC, Fragment, ReactNode } from 'react';
+import { FC, Fragment } from 'react';
 import { Menu } from '@headlessui/react';
 
 import { cn } from '@/shared/lib/classNames';
 
 import AppLink from '../../AppLink/AppLink';
-import { IconButton } from '../../Button';
+import { DropdownDirection, DropdownItem } from '../model/types/dropdown';
 
 import styles from './DropDown.module.scss';
-
-export interface DropdownItem {
-  disabled?: boolean;
-  content?: ReactNode;
-  onClick?: () => void;
-  href?: string;
-  divide?: boolean;
-}
 
 interface IDropDownProps {
   className?: string;
@@ -22,7 +14,6 @@ interface IDropDownProps {
   items: DropdownItem[];
   direction?: DropdownDirection;
 }
-export type DropdownDirection = 'top left' | 'top right' | 'bottom left' | 'bottom right';
 
 export const mapDirectionClass: Record<DropdownDirection, string> = {
   'bottom left': styles.optionsBottomLeft,
@@ -38,7 +29,7 @@ export const DropDown: FC<IDropDownProps> = ({ trigger, items, direction = 'bott
       <Menu.Items as={'ul'} className={cn(styles.items, mapDirectionClass[direction])}>
         {items.map((item, index) => (
           <Menu.Item as={'li'} key={`dropdown-key-${index}`} disabled={item.disabled}>
-            {({ active, disabled }) => {
+            {({ active, disabled, close }) => {
               const cls = [
                 styles.item,
                 {
@@ -51,7 +42,7 @@ export const DropDown: FC<IDropDownProps> = ({ trigger, items, direction = 'bott
               return (
                 <>
                   {item.href ? (
-                    <AppLink to={item.href} className={cn(cls)}>
+                    <AppLink to={item.href} className={cn(cls)} onClick={close}>
                       {item.content}
                     </AppLink>
                   ) : (

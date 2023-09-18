@@ -1,0 +1,98 @@
+.Notification {
+  min-block-size: 40px;
+  border-radius: var(--rounded-sm);
+  font-size: 0.875rem;
+  background-color: var(--background-base);
+  width: 100%;
+  pointer-events: all;
+
+  button {
+    color: inherit;
+
+    &:hover {
+      color: var(--text-base);
+    }
+
+    transition: color 0.1s ease;
+  }
+
+  &.info {
+    color: var(--essential-base);
+    border: 1px solid var(--essential-base);
+  }
+
+  &.warning {
+    color: var(--essential-warning);
+    border: 1px solid var(--essential-warning);
+  }
+
+  &.success {
+    color: var(--essential-positive);
+    border: 1px solid var(--essential-positive);
+  }
+
+  &.error {
+    color: var(--essential-negative);
+    border: 1px solid var(--essential-negative);
+  }
+}
+
+.notificationContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-block: var(--spacer-1, 12px);
+  padding-inline: var(--spacer-0, 16px);
+
+  .iconWrapper {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .messageWrapper {
+    display: flex;
+    margin-right: auto;
+  }
+
+  .buttonWraper {
+    display: flex;
+
+    /* align-self: center; */
+    flex-shrink: 0;
+
+    button {
+      display: inline-flex;
+    }
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.enter {
+  transition: opacity 0.75s ease;
+}
+
+.enterFrom {
+  opacity: 0;
+}
+
+.enterTo {
+  opacity: 1;
+}
+
+.leave {
+  transition: opacity 0.5s ease;
+}
+
+.leaveFrom {
+  opacity: 1;
+}
+
+.leaveTo {
+  opacity: 0;
+}

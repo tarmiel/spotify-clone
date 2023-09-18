@@ -5,6 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { sessionActions } from '@/entities/Session/model/slice/session';
 import { SessionDTO } from '@/entities/Session/model/types/sessionSchema';
+import { showNotification } from '@/shared/lib/notification';
 import storage from '@/shared/lib/storage/storage';
 import { TExternalFormError } from '@/shared/ui/Form/ui/Form/Form';
 
@@ -34,11 +35,17 @@ export const register = createAsyncThunk<
       // alert(e.response.data.message);
 
       if (response.status === 400) {
-        alert(e.response.data.message);
+        showNotification({
+          type: 'error',
+          content: e.response.data.message,
+        });
         return rejectWithValue(e.response.data.errors);
       }
     } else {
-      alert('Something went wrong. Try again later ...');
+      showNotification({
+        type: 'error',
+        content: 'Something went wrong. Try again later ...',
+      });
     }
 
     return rejectWithValue([]);
