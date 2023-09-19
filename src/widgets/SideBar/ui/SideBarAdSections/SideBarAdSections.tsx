@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { SecondaryButton } from '@/shared/ui/Button/SecondaryButton/SecondaryButton';
 import { VStack } from '@/shared/ui/Stack';

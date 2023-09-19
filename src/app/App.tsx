@@ -11,9 +11,9 @@ const App = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={cn('App', theme)}>
+    <div id={'app'} className={cn('App', theme)}>
       <AppRouter />
-      <NotificationContainer />
+      <NotificationContainer style={{ width: '350px' }} />
     </div>
   );
 };

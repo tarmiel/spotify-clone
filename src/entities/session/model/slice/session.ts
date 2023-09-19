@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { sessionApi } from '../../api/session';
 import { SessionDTO, SessionSchema } from '../types/sessionSchema';
 
 const initialState: SessionSchema = {
