@@ -22,12 +22,13 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "typeRoots": ["./src/types/*", "./node_modules/@types/"]
+    "typeRoots": ["./node_modules/@types/"]
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["./node_modules"]
 }

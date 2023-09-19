@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { cn } from '@/shared/lib/classNames/classNames';
 import { LayoutResizer } from '@/shared/ui/LayoutResizer/LayoutResizer';
+import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 import { PageLoader } from '@/widgets/PageLoader';
 import { SideBar } from '@/widgets/SideBar';
@@ -28,7 +29,9 @@ export const MainLayout = memo(() => {
         {/* </div> */}
       </div>
       {/* <div className={styles.rightbar}>{rightbar}</div> */}
-      <div className={styles.footer}></div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </div>
   );
 });

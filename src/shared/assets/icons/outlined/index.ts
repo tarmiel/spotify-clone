@@ -26,7 +26,7 @@ export { default as Melody } from './melody.svg';
 export { default as MenuBurger } from './menu.svg';
 export { default as MenuList } from './menu-list.svg';
 export { default as MenuTile } from './menu-tile.svg';
-export { default as Mircophone } from './mircophone.svg';
+export { default as Microphone } from './microphone.svg';
 export { default as Pencil } from './pencil.svg';
 export { default as PlayScreen } from './playscreen.svg';
 export { default as Plus } from './plus.svg';

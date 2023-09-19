@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 72px;
+  padding-inline: 16px;
+}
+
+.trackPreview {
+  min-width: 180px;
+  width: 30%;
+}
+
+.trackControls {
+  max-width: 722px;
+  width: 40%;
+}
+
+.trackActions {
+  min-width: 180px;
+  width: 30%;
+}

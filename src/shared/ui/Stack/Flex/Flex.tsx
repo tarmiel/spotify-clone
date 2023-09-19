@@ -47,6 +47,7 @@ export interface FlexProps extends DivProps {
   direction: FlexDirection;
   wrap?: FlexWrap;
   gap?: FlexGap;
+  noShrink?: boolean;
   max?: boolean;
 }
 
@@ -60,6 +61,7 @@ export const Flex = (props: FlexProps) => {
     wrap = 'nowrap',
     gap,
     max,
+    noShrink,
     ...otherProps
   } = props;
 
@@ -69,9 +71,11 @@ export const Flex = (props: FlexProps) => {
     alignClasses[align],
     directionClasses[direction],
     cls[wrap],
+
     gap && gapClasses[gap],
     {
       [cls.max]: max,
+      [cls.noShrick]: noShrink,
     },
   ];
 

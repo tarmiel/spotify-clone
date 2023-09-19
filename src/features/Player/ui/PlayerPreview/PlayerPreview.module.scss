@@ -1,0 +1,45 @@
+.PlayerPreview {
+  display: flex;
+  gap: 16px;
+
+  .image {
+    height: 56px;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    isolation: isolate;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--rounded-sm);
+    background-color: #282828;
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    z-index: 0;
+
+    .fallback {
+      bottom: 35%;
+      left: 35%;
+      position: absolute;
+      right: 35%;
+      top: 35%;
+      z-index: 0;
+    }
+
+    img {
+      background-color: transparent;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+}
