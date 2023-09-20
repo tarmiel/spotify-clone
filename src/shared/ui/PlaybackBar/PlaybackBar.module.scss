@@ -1,0 +1,22 @@
+.PlaybackBar {
+  --playback-bar-grid-gap: 8px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--playback-bar-grid-gap);
+  width: 100%;
+}
+
+.time {
+  min-width: 40px;
+}
+
+.leftTime {
+  text-align: right;
+}
+
+.rightTime {
+  text-align: left;
+}

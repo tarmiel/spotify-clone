@@ -1,0 +1,8 @@
+.VolumeBar {
+  --slider-width: 100%;
+
+  position: relative;
+  display: flex;
+  flex: 0 1 125px;
+  align-items: center;
+}

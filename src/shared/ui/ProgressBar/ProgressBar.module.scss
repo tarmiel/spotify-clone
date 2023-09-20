@@ -1,0 +1,211 @@
+/* .ProgressBar {
+  height: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  --bg-color: hsla(0, 0%, 100%, 0.3);
+  --fg-color: #fff;
+  --is-active-fg-color: var(--background-bright-accent-subdued);
+  --progress-bar-transform: 0%;
+  --progress-bar-height: 4px;
+  --progress-bar-radius: calc(var(--progress-bar-height) / 2);
+
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  width: 100%;
+
+  &:hover {
+    .thumb {
+      display: block;
+    }
+
+    .progress {
+      background-color: var(--is-active-fg-color);
+    }
+  }
+}
+
+.bar,
+.track {
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+  width: 100%;
+}
+
+.bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--bg-color);
+  display: flex;
+}
+
+.track {
+  overflow: hidden;
+}
+
+.progress {
+  background-color: var(--fg-color);
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+  transform: translateX(calc(-100% + var(--progress-bar-transform)));
+  width: 100%;
+}
+
+.thumb {
+  display: none;
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--progress-bar-transform);
+  margin-left: -6px;
+  z-index: 100;
+
+  border: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+} */
+
+/* Input range - chrome and safari */
+
+.ProgressBar {
+  --bg-color: hsl(0deg 0% 100% / 30%);
+  --bg-color-loading-0: hsl(0deg 0% 100% / 20%);
+  --bg-color-loading-1: hsl(0deg 0% 100% / 50%);
+  --fg-color: #fff;
+  --is-active-fg-color: var(--background-bright-accent-subdued);
+  --progress-bar-container-height: 12px;
+  --progress-bar-transform: 0%;
+  --progress-bar-height: 4px;
+  --progress-bar-radius: calc(var(--progress-bar-height) / 2);
+  --thumb-size: 12px;
+
+  position: relative;
+  height: var(--progress-bar-container-height);
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &.loading {
+    .range {
+      animation: skeleton-loading 0.7s linear infinite alternate;
+    }
+  }
+
+  &:hover {
+    .range {
+      &::-webkit-slider-thumb {
+        display: block;
+      }
+
+      &::-moz-range-thumb {
+        display: block;
+        height: var(--thumb-size);
+        width: var(--thumb-size);
+      }
+
+      &::before {
+        background-color: var(--is-active-fg-color);
+      }
+
+      &::-moz-range-progress {
+        background-color: var(--is-active-fg-color);
+      }
+    }
+  }
+}
+
+.range {
+  appearance: none;
+  appearance: none;
+  position: relative;
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+  width: 100%;
+  border: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+}
+
+/* Input range track - firefox */
+.range::-moz-range-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--progress-bar-radius);
+}
+
+/* played progress length - Chrome & safari */
+.range::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--progress-bar-transform);
+  background: var(--fg-color);
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+}
+
+/* played progress length - firefox */
+.range::-moz-range-progress {
+  background: var(--fg-color);
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+}
+
+/* slider thumb - chrome and safari */
+.range::-webkit-slider-thumb {
+  appearance: none;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  background-color: var(--fg-color);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+  display: none;
+}
+
+/* slider thumb - firefox */
+.range::-moz-range-thumb {
+  appearance: none;
+  border-radius: 50%;
+  background: var(--fg-color);
+  border: transparent;
+  position: relative;
+  height: 0;
+  width: 0;
+}
+
+/* dragging thumb - firefox */
+
+/* .range:active::-moz-range-thumb {
+  transform: scale(1.2);
+} */
+
+/* dragging thumb - chrome and safari */
+
+/* .range:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+} */
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--bg-color-loading-0);
+  }
+
+  50% {
+    background-color: var(--bg-color);
+  }
+
+  100% {
+    background-color: var(--bg-color-loading-1);
+  }
+}
