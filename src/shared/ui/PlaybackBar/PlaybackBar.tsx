@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
-import { getTime } from '@/shared/lib/timeConverter/getTime';
+import { convertMsToTime } from '@/shared/lib/timeConverter';
 
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Span } from '../Typography';
@@ -14,18 +14,38 @@ interface IPlaybackBarProps {
   min?: number;
   max?: number;
   step?: number;
-  setPlayTime?: (value: number) => void;
+  isLoading?: boolean;
+  setSeekTime?: (value: number) => void;
 }
 
-export const PlaybackBar: FC<IPlaybackBarProps> = ({ value = 0, min = 0, max = 0, step, setPlayTime, className }) => {
+export const PlaybackBar: FC<IPlaybackBarProps> = ({
+  value = 0,
+  min = 0,
+  max = 0,
+  step,
+  isLoading,
+  setSeekTime,
+  className,
+}) => {
+  const playTime = convertMsToTime(value * 1000);
+  const maxPlayTime = convertMsToTime(max * 1000);
+
   return (
     <div className={cn(styles.PlaybackBar, className)}>
       <Span size={'xs'} className={cn(styles.time, styles.leftTime)}>
-        {value === 0 ? '0:00' : getTime(value)}
+        {isLoading ? '--/--' : playTime}
       </Span>
-      <ProgressBar value={value} min={min} max={max} onChange={setPlayTime} step={step} aria-valuetext={`${value}`} />
+      <ProgressBar
+        value={value}
+        min={min}
+        max={Math.floor(max)}
+        onInput={setSeekTime}
+        step={step}
+        aria-valuetext={`${playTime}/${maxPlayTime}`}
+        isLoading={isLoading}
+      />
       <Span size={'xs'} className={cn(styles.time, styles.rightTime)}>
-        {max === 0 ? '0:00' : getTime(max)}
+        {isLoading ? '--/--' : maxPlayTime}
       </Span>
     </div>
   );

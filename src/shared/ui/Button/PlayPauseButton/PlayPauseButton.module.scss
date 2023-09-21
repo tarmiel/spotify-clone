@@ -30,6 +30,12 @@
       svg {
         transform: scale(1.2);
       }
+
+      &.active {
+        svg {
+          transform: scale(1);
+        }
+      }
     }
   }
 }

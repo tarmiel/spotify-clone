@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, memo } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 
@@ -44,6 +44,10 @@ const IconButtonInner = <T extends IconType>(
     </Button>
   );
 };
-export const IconButton = forwardRef(IconButtonInner) as <T extends IconType>(
+const IconButtonRef = forwardRef(IconButtonInner) as <T extends IconType>(
   props: IIconButtonProps<T> & { ref?: React.ForwardedRef<HTMLButtonElement> },
 ) => ReturnType<typeof IconButtonInner>;
+
+export const IconButton = memo(IconButtonRef) as <T extends IconType>(
+  props: IIconButtonProps<T> & { ref?: React.ForwardedRef<HTMLButtonElement> },
+) => ReturnType<typeof IconButtonRef>;

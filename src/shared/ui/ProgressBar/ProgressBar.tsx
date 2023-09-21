@@ -4,13 +4,14 @@ import { cn } from '@/shared/lib/classNames';
 
 import styles from './ProgressBar.module.scss';
 
-interface IProgressBarProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface IProgressBarProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'onInput'> {
   className?: string;
   min?: number;
   max?: number;
   step?: number;
   value?: number;
   onChange?: (value: number) => void;
+  onInput?: (value: number) => void;
   isLoading?: boolean;
 }
 
@@ -20,6 +21,7 @@ export const ProgressBar: FC<IProgressBarProps> = ({
   value = 0,
   step,
   onChange,
+  onInput,
   isLoading,
   className,
   ...props
@@ -30,6 +32,10 @@ export const ProgressBar: FC<IProgressBarProps> = ({
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(Number(e.target.value));
+  };
+
+  const onInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    onInput?.(Number(e.target.value));
   };
 
   return (
@@ -47,6 +53,7 @@ export const ProgressBar: FC<IProgressBarProps> = ({
         aria-valuetext="0:33/2:50"
         value={verifiedValue}
         onChange={onChangeHandler}
+        onInput={onInputHandler}
         {...props}
       />
       {/* <label className="hidden-visually">

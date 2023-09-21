@@ -27,7 +27,7 @@ export const PlayPauseButton: FC<IPlayPauseButtonProps> = ({
       <IconButton
         icon={{ type: 'filled', name: 'Pause' }}
         size={size}
-        className={cn(cls, styles[size])}
+        className={cn(cls, styles[size], styles.active)}
         hoverScale
         rounded={'full'}
         {...props}
