@@ -3,12 +3,14 @@ import React, { FC } from 'react';
 import { cn } from '@/shared/lib/classNames';
 
 import { LibraryItem } from '../LibraryItem/LibraryItem';
+import { LibraryItemSkeleton } from '../LibraryItem/LibraryItemSkeleton';
 
 import styles from './Library.module.scss';
 
 interface ILibraryProps {
   className?: string;
   collapsed?: boolean;
+  isLoading?: boolean;
 }
 
 const items = [
@@ -42,7 +44,16 @@ const items = [
   },
 ];
 
-const Library: FC<ILibraryProps> = ({ className, collapsed }) => {
+const getSkeletons = (collapsed?: boolean) =>
+  new Array(6).fill(0).map((item, index) => <LibraryItemSkeleton key={index} collapsed={collapsed} />);
+
+const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed }) => {
+  if (isLoading) {
+    return (
+      <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>{getSkeletons(collapsed)}</ul>
+    );
+  }
+
   return (
     <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>
       {items.map((item) => (

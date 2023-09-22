@@ -18,5 +18,7 @@
   --content-spacing: clamp(1rem, 2vw, 1.5rem);
   --modal-z-index: 1000;
   --overlay-z-index: 100;
-  --overlay-color: rgba(0 0 0 / 60%);
+  --overlay-color: rgb(0 0 0 / 60%);
+  --skeleton-bg-base: #282828;
+  --skeleton-bg-accent: hsl(0deg 0% 100% / 10%);
 }
