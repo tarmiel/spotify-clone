@@ -1,27 +1,54 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import { MediaGrid } from '@/entities/Media';
-import { ShortsList } from '@/features/Shorts';
-import { sections } from '@/shared/data/sections';
-import { Skeleton } from '@/shared/ui/Skeleton';
+import {
+  GenericSection,
+  GenericSectionSkeleton,
+  ShortsSection,
+  ShortsSectionSkeleton,
+  usePreviewSections,
+} from '@/entities/Section';
+import { useHomeSections } from '@/entities/Section';
+import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
 import { VStack } from '@/shared/ui/Stack';
-import { Section } from '@/widgets/Section';
 
 import styles from './HomePage.module.scss';
 
 const HomePage: FC = () => {
+  const { isAuthorized } = useAuth();
+  const { isLoading: isLoadingPreview, data: previewSections } = usePreviewSections(null, {
+    skip: isAuthorized,
+  });
+  const { isLoading: isLoadingSections, data: homeSections } = useHomeSections(null, {
+    skip: !isAuthorized,
+  });
+
+  if (isLoadingPreview || isLoadingSections)
+    return (
+      <div className={styles.HomePage}>
+        <div className={styles.header}></div>
+        <VStack gap={'32'} max className={styles.content}>
+          <ShortsSectionSkeleton />
+          <GenericSectionSkeleton />
+          <GenericSectionSkeleton />
+        </VStack>
+      </div>
+    );
+
+  const headerBg = isAuthorized ? 'rgb(72 32 176)' : 'rgb(83 83 83)';
+
   return (
     <div className={styles.HomePage}>
-      <div className={styles.header}></div>
+      <div className={styles.header} style={{ '--page-header-bg': `${headerBg}` } as React.CSSProperties}></div>
       <VStack gap={'32'} max className={styles.content}>
-        <Section title={'Welcome'} id={'qwert'}>
-          <ShortsList isLoading={true} />
-        </Section>
-        {sections.map((section) => (
-          <Section key={section.id} title={section.title} id={section.id}>
-            <MediaGrid isLoading={true} mediaItems={section.sectionItems} />
-          </Section>
-        ))}
+        {isAuthorized &&
+          homeSections?.map((section) => {
+            return section.type === 'ShortsSection' ? (
+              <ShortsSection key={section.id} {...section} />
+            ) : (
+              <GenericSection key={section.id} {...section} />
+            );
+          })}
+        {!isAuthorized && previewSections?.map((section) => <GenericSection key={section.id} {...section} />)}
       </VStack>
     </div>
   );

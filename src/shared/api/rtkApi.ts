@@ -1,7 +1,6 @@
 import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 
 import { SessionDTO } from '@/entities/Session';
-import { LOCAL_STORAGE_TOKEN_KEY } from '@/shared/const/localstorage';
 
 // eslint-disable-next-line no-restricted-imports
 import { sessionActions } from '../../entities/Session/model/slice/session';
@@ -30,7 +29,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     // send refresh token to get new access token
     const refreshResult = await baseQuery('/api/auth/refresh', api, extraOptions);
 
-    if (refreshResult.data && refreshResult.meta?.response?.status === 200) {
+    if (refreshResult.meta?.response?.status === 200 && refreshResult.data) {
       const sessionData = refreshResult.data as SessionDTO;
       // store the new token and init session
       api.dispatch(sessionActions.setSessionData(sessionData));
@@ -38,7 +37,15 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       // retry the original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      await baseQuery('/api/auth/logout', api, extraOptions);
+      await baseQuery(
+        {
+          url: `api/auth/logout`,
+          method: 'POST',
+          body: {},
+        },
+        api,
+        extraOptions,
+      );
       api.dispatch(sessionActions.clearSessionData());
       storage.clearToken();
       // window.location.href = '/auth/login';

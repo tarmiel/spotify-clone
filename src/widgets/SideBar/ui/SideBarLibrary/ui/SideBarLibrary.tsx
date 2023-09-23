@@ -40,7 +40,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
             <Icon type={'filled'} name={'Library'} width={24} height={24} />
           </ClearButton>
         </header>
-        {isAuthorized && <Library collapsed={collapsed} isLoading={true} />}
+        {isAuthorized && <Library collapsed={collapsed} isLoading={false} />}
       </div>
     );
   }
@@ -63,7 +63,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
         <Select value={sortByValue} onChange={setSortByValue} items={selectItems} label={'Sort By'} />
       </HStack> */}
 
-      {isAuthorized ? <Library collapsed={collapsed} isLoading={true} /> : <SideBarAdSections />}
+      {isAuthorized ? <Library collapsed={collapsed} isLoading={false} /> : <SideBarAdSections />}
     </div>
   );
 };

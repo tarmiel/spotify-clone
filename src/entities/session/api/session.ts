@@ -9,15 +9,15 @@ export const sessionApi = rtkApi.injectEndpoints({
       query: () => ({
         url: '/api/auth/me',
       }),
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
+      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled;
 
-          dispatch(sessionActions.setSessionData(data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      //     dispatch(sessionActions.setSessionData(data));
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // },
     }),
   }),
 });

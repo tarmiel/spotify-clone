@@ -1,0 +1,21 @@
+.ShortsSection {
+  width: 100%;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+
+.ShortsSectionGrid {
+  --min-column-width: 250px;
+  --item-height: 80px;
+  --column-gap: var(--content-spacing);
+  --row-gap: calc(var(--content-spacing) * 0.7);
+
+  width: 100%;
+  grid-gap: var(--row-gap) var(--column-gap);
+  display: grid;
+  grid-template: auto/repeat(auto-fill, minmax(max(var(--min-column-width), 25%), 1fr));
+}
