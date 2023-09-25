@@ -7,7 +7,7 @@ import {
   ShortsSectionSkeleton,
   usePreviewSections,
 } from '@/entities/Section';
-import { useHomeSections } from '@/entities/Section';
+import { useShortsSection } from '@/entities/Section';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
 import { VStack } from '@/shared/ui/Stack';
 
@@ -15,10 +15,8 @@ import styles from './HomePage.module.scss';
 
 const HomePage: FC = () => {
   const { isAuthorized } = useAuth();
-  const { isLoading: isLoadingPreview, data: previewSections } = usePreviewSections(null, {
-    skip: isAuthorized,
-  });
-  const { isLoading: isLoadingSections, data: homeSections } = useHomeSections(null, {
+  const { isLoading: isLoadingPreview, data: previewSections } = usePreviewSections();
+  const { isLoading: isLoadingSections, data: shortsSection } = useShortsSection(null, {
     skip: !isAuthorized,
   });
 
@@ -40,15 +38,8 @@ const HomePage: FC = () => {
     <div className={styles.HomePage}>
       <div className={styles.header} style={{ '--page-header-bg': `${headerBg}` } as React.CSSProperties}></div>
       <VStack gap={'32'} max className={styles.content}>
-        {isAuthorized &&
-          homeSections?.map((section) => {
-            return section.type === 'ShortsSection' ? (
-              <ShortsSection key={section.id} {...section} />
-            ) : (
-              <GenericSection key={section.id} {...section} />
-            );
-          })}
-        {!isAuthorized && previewSections?.map((section) => <GenericSection key={section.id} {...section} />)}
+        {isAuthorized && shortsSection && <ShortsSection {...shortsSection} />}
+        {previewSections?.map((section) => <GenericSection key={section.id} {...section} />)}
       </VStack>
     </div>
   );

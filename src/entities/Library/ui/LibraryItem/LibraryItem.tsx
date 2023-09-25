@@ -8,16 +8,12 @@ import { Icon } from '@/shared/ui/Icon';
 import { HStack } from '@/shared/ui/Stack';
 import { P, Span } from '@/shared/ui/Typography';
 
+import { ILibraryItem } from '../../model/types/library';
+
 import styles from './LibraryItem.module.scss';
-interface ILibraryItemProps {
+interface ILibraryItemProps extends ILibraryItem {
   className?: string;
   collapsed?: boolean;
-  image?: string;
-  name?: string;
-  pinned?: boolean;
-  type?: string;
-  songsCount?: number;
-  owner?: string;
 }
 
 export const LibraryItem: FC<ILibraryItemProps> = ({
@@ -26,11 +22,13 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
   name,
   pinned,
   type,
-  songsCount,
+  count,
   owner,
   className,
 }) => {
-  const tags = [type, owner, songsCount];
+  const MType = type === 'collection' ? 'Playlist' : type[0].toUpperCase() + type.slice(1);
+
+  const tags = [MType, owner?.name, count];
 
   if (collapsed) {
     return (
@@ -38,8 +36,8 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
         <li className={cn(styles.LibraryItem, className)}>
           <div className={cn(styles.image, { [styles.fallback]: !image })}>
             <Avatar
-              rounded={type === 'Artist' ? 'full' : 'sm'}
-              src={image}
+              rounded={type === 'artist' ? 'full' : 'sm'}
+              src={image?.sources[0].url}
               alt={name}
               fallBackIcon={<Icon type={'outlined'} name={'Melody'} width={24} height={24} />}
             />
@@ -54,8 +52,8 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
       <li className={cn(styles.LibraryItem, className)}>
         <div className={cn(styles.image, { [styles.fallback]: !image })}>
           <Avatar
-            rounded={type === 'Artist' ? 'full' : 'sm'}
-            src={image}
+            rounded={type === 'artist' ? 'full' : 'sm'}
+            src={image?.sources[0].url}
             alt={name}
             fallBackIcon={<Icon type={'outlined'} name={'Melody'} width={24} height={24} />}
           />

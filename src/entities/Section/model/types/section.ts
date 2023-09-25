@@ -16,7 +16,7 @@ export interface SectionItem {
   owner: Owner;
 }
 
-type SectionItemType = 'playlist' | 'podcast' | 'episode' | 'artist';
+export type SectionItemType = 'playlist' | 'collection'; // 'playlist' | 'podcast' | 'episode' | 'artist' | 'collection'
 
 interface Image {
   sources: ImageSource[];

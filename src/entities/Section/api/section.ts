@@ -4,7 +4,7 @@ import { Section } from '../model/types/section';
 
 export const sectionApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getPreviewSections: build.query<Section[], null>({
+    getPreviewSections: build.query<Section[], void>({
       query: () => ({
         url: `/api/section/preview`,
       }),
@@ -14,7 +14,16 @@ export const sectionApi = rtkApi.injectEndpoints({
         url: `/api/section`,
       }),
     }),
+    getShortsSection: build.query<Section, null>({
+      query: () => ({
+        url: `/api/section/shorts`,
+      }),
+    }),
   }),
 });
 
-export const { useGetPreviewSectionsQuery: usePreviewSections, useGetHomeSectionsQuery: useHomeSections } = sectionApi;
+export const {
+  useGetPreviewSectionsQuery: usePreviewSections,
+  useGetHomeSectionsQuery: useHomeSections,
+  useGetShortsSectionQuery: useShortsSection,
+} = sectionApi;

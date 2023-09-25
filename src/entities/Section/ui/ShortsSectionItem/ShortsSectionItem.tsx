@@ -15,9 +15,12 @@ interface IShortsSectionItemProps extends SectionItem {
   className?: string;
 }
 
-const ShortsSectionItem: FC<IShortsSectionItemProps> = ({ id, image, title, className }) => {
+const ShortsSectionItem: FC<IShortsSectionItemProps> = ({ id, image, title, type, className }) => {
   return (
-    <AppLink to={APP_ROUTES.playlist(id)} className={cn(styles.ShortsSectionItem, className)}>
+    <AppLink
+      to={type === 'collection' ? APP_ROUTES.collection : APP_ROUTES.playlist(id)}
+      className={cn(styles.ShortsSectionItem, className)}
+    >
       <HStack>
         <div className={styles.image}>
           <img src={image.sources[0].url} alt={title} draggable={false} loading={'lazy'} />

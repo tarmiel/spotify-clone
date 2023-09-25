@@ -1,4 +1,4 @@
-export { useHomeSections, usePreviewSections } from './api/section';
+export { useHomeSections, usePreviewSections, useShortsSection } from './api/section';
 export type { Section } from './model/types/section';
 export { GenericSection } from './ui/GenericSection/GenericSection';
 export { GenericSectionSkeleton } from './ui/GenericSection/GenericSectionSkeleton';

@@ -58,6 +58,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
 export const rtkApi = createApi({
   reducerPath: 'api',
+  tagTypes: ['Library'],
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({}),
 });

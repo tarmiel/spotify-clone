@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Suspense } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
@@ -18,5 +18,15 @@ interface IFooterProps {
 export const Footer: FC<IFooterProps> = ({ className }) => {
   const { isAuthorized } = useAuth();
 
-  return <footer className={cn(styles.Footer, className)}>{isAuthorized ? <Player /> : <Banner />}</footer>;
+  return (
+    <footer className={cn(styles.Footer, className)}>
+      {isAuthorized ? (
+        <Suspense>
+          <Player />
+        </Suspense>
+      ) : (
+        <Banner />
+      )}
+    </footer>
+  );
 };

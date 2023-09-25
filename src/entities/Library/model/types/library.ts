@@ -1,18 +1,19 @@
-export interface Library {
+export interface ILibrary {
   id: string;
+  userId: string;
   availableFilters: Filter[]; // for tabs
   availableSortOrders: SortOrder[]; // for dropdown
   pagingInfo: PagingInfo;
   totalCount: number;
-  items: LibraryItem[];
+  items: ILibraryItem[];
 }
 
-export interface LibraryItem {
+export interface ILibraryItem {
   id: string;
   type: LibraryItemType;
   addedAt: AddedAt;
-  pinnable: boolean;
-  pinned: boolean;
+  pinnable?: boolean;
+  pinned?: boolean;
   name: string;
   count?: number;
   image?: Image;

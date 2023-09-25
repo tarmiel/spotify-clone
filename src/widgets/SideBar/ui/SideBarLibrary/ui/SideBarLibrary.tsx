@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { Library } from '@/entities/Library';
+import { ILibrary, ILibraryItem, Library, useAddToLibraryMutation, useGetLibraryQuery } from '@/entities/Library';
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
@@ -30,7 +30,26 @@ const selectItems: ISelectItem<string>[] = [
 
 export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse, className }) => {
   const [sortByValue, setSortByValue] = useState(selectItems[0].value);
-  const { isAuthorized } = useAuth();
+  const { user, isAuthorized } = useAuth();
+  const { isLoading, data: library } = useGetLibraryQuery(null, {
+    skip: !isAuthorized,
+  });
+
+  const [addToLibrary, result] = useAddToLibraryMutation();
+
+  console.log(result);
+
+  const newLibraryItem: Omit<ILibraryItem, 'id'> = {
+    name: 'My playlist №1',
+    addedAt: { isoString: '' },
+    type: 'playlist',
+    pinned: false,
+    owner: {
+      id: user!.id,
+      name: '',
+      type: 'User',
+    },
+  };
 
   if (collapsed) {
     return (
@@ -40,7 +59,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
             <Icon type={'filled'} name={'Library'} width={24} height={24} />
           </ClearButton>
         </header>
-        {isAuthorized && <Library collapsed={collapsed} isLoading={false} />}
+        {isAuthorized && <Library collapsed={collapsed} isLoading={isLoading} items={library?.items} />}
       </div>
     );
   }
@@ -52,9 +71,8 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <Icon type={'filled'} name={'Library'} width={24} height={24} /> Your Library
         </ClearButton>
         <HStack gap={'8'}>
-          <AppLink to={APP_ROUTES.auth.login}>
-            <IconButton icon={{ type: 'outlined', name: 'Plus' }} />
-          </AppLink>
+          <IconButton icon={{ type: 'outlined', name: 'Plus' }} onClick={() => addToLibrary(newLibraryItem)} />
+
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>
       </header>
@@ -63,7 +81,11 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
         <Select value={sortByValue} onChange={setSortByValue} items={selectItems} label={'Sort By'} />
       </HStack> */}
 
-      {isAuthorized ? <Library collapsed={collapsed} isLoading={false} /> : <SideBarAdSections />}
+      {isAuthorized ? (
+        <Library collapsed={collapsed} isLoading={isLoading} items={library?.items} />
+      ) : (
+        <SideBarAdSections />
+      )}
     </div>
   );
 };

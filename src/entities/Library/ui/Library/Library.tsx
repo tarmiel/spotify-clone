@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 
+import { ILibraryItem } from '../../model/types/library';
 import { LibraryItem } from '../LibraryItem/LibraryItem';
 import { LibraryItemSkeleton } from '../LibraryItem/LibraryItemSkeleton';
 
@@ -11,9 +12,10 @@ interface ILibraryProps {
   className?: string;
   collapsed?: boolean;
   isLoading?: boolean;
+  items?: ILibraryItem[];
 }
 
-const items = [
+const Litems = [
   {
     name: 'Liked Songs',
     image: 'https://misc.scdn.co/liked-songs/liked-songs-64.png',
@@ -47,18 +49,20 @@ const items = [
 const getSkeletons = (collapsed?: boolean) =>
   new Array(6).fill(0).map((item, index) => <LibraryItemSkeleton key={index} collapsed={collapsed} />);
 
-const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed }) => {
+const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed, items }) => {
   if (isLoading) {
     return (
       <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>{getSkeletons(collapsed)}</ul>
     );
   }
 
+  if (!items) {
+    return null;
+  }
+
   return (
     <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>
-      {items.map((item) => (
-        <LibraryItem key={item.name} {...item} collapsed={collapsed} />
-      ))}
+      {items?.map((item) => <LibraryItem key={item.name} {...item} />)}
     </ul>
   );
 };
