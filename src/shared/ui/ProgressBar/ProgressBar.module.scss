@@ -98,7 +98,7 @@
     }
   }
 
-  &:hover {
+  /* &:hover {
     .range {
       &::-webkit-slider-thumb {
         display: block;
@@ -118,11 +118,10 @@
         background-color: var(--is-active-fg-color);
       }
     }
-  }
+  } */
 }
 
 .range {
-  appearance: none;
   appearance: none;
   position: relative;
   border-radius: var(--progress-bar-radius);
@@ -131,6 +130,27 @@
   border: 0;
   margin: 0;
   background-color: var(--bg-color);
+  cursor: pointer;
+
+  &:hover {
+    &::-webkit-slider-thumb {
+      display: block;
+    }
+
+    &::-moz-range-thumb {
+      display: block;
+      height: var(--thumb-size);
+      width: var(--thumb-size);
+    }
+
+    &::before {
+      background-color: var(--is-active-fg-color);
+    }
+
+    &::-moz-range-progress {
+      background-color: var(--is-active-fg-color);
+    }
+  }
 }
 
 /* Input range track - firefox */

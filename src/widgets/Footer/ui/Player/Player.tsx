@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { PlayerActions, PlayerControls, PlayerPreview } from '@/features/Player';
 import { cn } from '@/shared/lib/classNames';
@@ -11,6 +11,8 @@ interface IPlayerProps {
 }
 
 export const Player: FC<IPlayerProps> = ({ className }) => {
+  const [volume, setVolume] = useState(30);
+
   return (
     <div className={cn(styles.Player, className)}>
       <HStack gap={'16'} align={'center'} justify={'between'} className={styles.container}>
@@ -18,10 +20,10 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
           <PlayerPreview />
         </div>
         <div className={styles.trackControls}>
-          <PlayerControls />
+          <PlayerControls volume={volume} />
         </div>
         <HStack justify={'end'} className={styles.trackActions}>
-          <PlayerActions />
+          <PlayerActions volume={volume} setVolume={setVolume} />
         </HStack>
       </HStack>
     </div>

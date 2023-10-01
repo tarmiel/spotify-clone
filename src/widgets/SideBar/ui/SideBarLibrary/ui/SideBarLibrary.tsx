@@ -37,7 +37,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
 
   const [addToLibrary, result] = useAddToLibraryMutation();
 
-  console.log(result);
+  // console.log(result);
 
   const newLibraryItem: Omit<ILibraryItem, 'id'> = {
     name: 'My playlist №1',

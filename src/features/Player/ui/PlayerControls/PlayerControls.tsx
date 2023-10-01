@@ -11,9 +11,10 @@ import styles from './PlayerControls.module.scss';
 
 interface IPlayerControlsProps {
   className?: string;
+  volume?: number;
 }
 
-export const PlayerControls: FC<IPlayerControlsProps> = ({ className }) => {
+export const PlayerControls: FC<IPlayerControlsProps> = ({ volume, className }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +40,7 @@ export const PlayerControls: FC<IPlayerControlsProps> = ({ className }) => {
       <Audio
         src={'http://127.0.0.1:5000/s3.mp3'}
         isPlaying={isPlaying}
-        volume={5}
+        volume={volume}
         seekValue={seekValue}
         onLoadStart={() => setIsLoading(true)}
         onLoadedData={() => setIsLoading(false)}

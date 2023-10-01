@@ -22,24 +22,13 @@ export const PlayPauseButton: FC<IPlayPauseButtonProps> = ({
 }) => {
   const cls = [styles.PlayPauseButton, className, styles[variant]];
 
-  if (isActive) {
-    return (
-      <IconButton
-        icon={{ type: 'filled', name: 'Pause' }}
-        size={size}
-        className={cn(cls, styles[size], styles.active)}
-        hoverScale
-        rounded={'full'}
-        {...props}
-      />
-    );
-  }
+  const buttonIcon = isActive ? 'Pause' : 'Play';
 
   return (
     <IconButton
-      icon={{ type: 'filled', name: 'Play' }}
+      icon={{ type: 'filled', name: buttonIcon }}
       size={size}
-      className={cn(cls, styles[size])}
+      className={cn(cls, styles[size], { [styles.active]: isActive })}
       hoverScale
       rounded={'full'}
       {...props}

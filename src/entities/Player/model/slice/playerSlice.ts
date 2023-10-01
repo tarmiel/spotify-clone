@@ -2,13 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { PlayerSchema } from '../types/playerSchema';
 
-const initialState: PlayerSchema = {};
+const initialState: PlayerSchema = {
+  isPlaying: false,
+};
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    setSessionData: (state, { payload }: PayloadAction<string>) => {},
+    nextSong: (state, { payload }: PayloadAction<string>) => {},
+    prevSong: (state, { payload }: PayloadAction<string>) => {},
+    playPause: (state, { payload }: PayloadAction<string>) => {},
   },
 });
 

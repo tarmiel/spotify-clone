@@ -49,7 +49,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       api.dispatch(sessionActions.clearSessionData());
       storage.clearToken();
       // window.location.href = '/auth/login';
-      alert('Unathorized');
+      // alert('Unathorized');
     }
   }
 

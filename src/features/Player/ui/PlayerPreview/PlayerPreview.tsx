@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
 import AppLink from '@/shared/ui/AppLink/AppLink';
-import { IconButton } from '@/shared/ui/Button';
+import { IconButton, LikeButton } from '@/shared/ui/Button';
 import { Icon } from '@/shared/ui/Icon';
 import { VStack } from '@/shared/ui/Stack';
 import { P, Span } from '@/shared/ui/Typography';
@@ -47,7 +47,8 @@ export const PlayerPreview: FC<IPlayerPreviewProps> = ({ className }) => {
         </Span>
       </div>
       <VStack justify={'center'} noShrink>
-        <IconButton icon={{ type: 'outlined', name: 'Heart' }} />
+        {/* <IconButton icon={{ type: 'outlined', name: 'Heart' }} /> */}
+        <LikeButton />
       </VStack>
     </div>
   );

@@ -62,7 +62,7 @@ const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed, items }) 
 
   return (
     <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>
-      {items?.map((item) => <LibraryItem key={item.name} {...item} />)}
+      {items?.map((item) => <LibraryItem key={item.name} {...item} collapsed={collapsed} />)}
     </ul>
   );
 };

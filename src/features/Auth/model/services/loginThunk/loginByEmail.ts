@@ -20,7 +20,7 @@ export const loginByEmail = createAsyncThunk<
 
   try {
     const response = await extra.api.post<SessionDTO>('/api/auth/login', authData);
-    console.log('login thunk', response);
+    // console.log('login thunk', response);
     if (!response.data) {
       throw new Error();
     }
