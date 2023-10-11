@@ -1,25 +1,30 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import { useGetPlaylistByIdQuery } from '@/entities/Playlist';
 import { PlaylistTable } from '@/features/Playlist';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 import { APP_ROUTES } from '@/shared/const/router';
 import { tracks } from '@/shared/data/playlistTracks';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import { PlayPauseButton } from '@/shared/ui/Button/PlayPauseButton/PlayPauseButton';
+import { Loader } from '@/shared/ui/Loader';
 import { VStack } from '@/shared/ui/Stack';
 import { H1, Span } from '@/shared/ui/Typography';
+import { NotFound } from '@/widgets/NotFound';
+import { PageLoader } from '@/widgets/PageLoader';
 
 import styles from './PlaylistPage.module.scss';
 
 const PlaylistPage: FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data: playlist } = useGetPlaylistByIdQuery(id || '', {
+  const { data: playlist, isLoading } = useGetPlaylistByIdQuery(id || '', {
     skip: !id,
   });
 
-  if (!playlist) return null;
+  if (isLoading) return <PageLoader />;
+  if (!playlist) return <NotFound />;
 
   document.documentElement.style.setProperty('--page-header-bg', playlist.images[0].extractedColors.colorDark.hex);
 
