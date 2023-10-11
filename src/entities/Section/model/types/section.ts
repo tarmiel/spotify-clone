@@ -20,7 +20,7 @@ export type SectionItemType = 'playlist' | 'collection'; // 'playlist' | 'podcas
 
 interface Image {
   sources: ImageSource[];
-  extractedColors?: ExtractedColors;
+  extractedColors: ExtractedColors;
 }
 
 interface ImageSource {

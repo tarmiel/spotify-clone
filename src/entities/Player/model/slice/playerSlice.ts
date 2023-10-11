@@ -10,9 +10,9 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    nextSong: (state, { payload }: PayloadAction<string>) => {},
-    prevSong: (state, { payload }: PayloadAction<string>) => {},
-    playPause: (state, { payload }: PayloadAction<string>) => {},
+    nextSong: (state, { payload }: PayloadAction<number>) => {},
+    prevSong: (state, { payload }: PayloadAction<number>) => {},
+    playPause: (state, { payload }: PayloadAction<number>) => {},
   },
 });
 

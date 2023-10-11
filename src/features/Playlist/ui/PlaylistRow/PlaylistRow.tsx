@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
+import { Track } from '@/entities/Track';
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
+import { convertMsToTime } from '@/shared/lib/timeConverter';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
@@ -16,10 +18,12 @@ import styles from './PlaylistRow.module.scss';
 interface IPlaylistRowProps {
   className?: string;
   number: number;
-  track: PlaylistTrack;
+  track: Track;
 }
 
 export const PlaylistRow: FC<IPlaylistRowProps> = ({ number, track, className }) => {
+  const coverImg = track.album?.images.find((image) => image.width === 64) || track.album?.images[0];
+
   return (
     <PlaylistGrid className={cn(styles.PlaylistRow, className)}>
       <td>
@@ -32,13 +36,13 @@ export const PlaylistRow: FC<IPlaylistRowProps> = ({ number, track, className })
       </td>
       <td>
         <HStack gap={'16'} className={styles.info}>
-          <img src={track.info.album.image} alt={track.info.name} width={40} height={40} />
+          <img src={coverImg?.url} alt={track.name} width={40} height={40} />
           <VStack>
-            <AppLink to={APP_ROUTES.track(track.info.id)} underline truncate>
-              {track.info.name}
+            <AppLink to={APP_ROUTES.track(track.id)} underline truncate>
+              {track.name}
             </AppLink>
             <div className={styles.artistsList}>
-              {track.info.artists.map((artist) => (
+              {track.artists.map((artist) => (
                 <AppLink
                   key={artist.id}
                   to={APP_ROUTES.artist(artist.id)}
@@ -55,15 +59,17 @@ export const PlaylistRow: FC<IPlaylistRowProps> = ({ number, track, className })
         </HStack>
       </td>
       <td>
-        <AppLink to={APP_ROUTES.album(track.info.album.id)} underline variant={'subdued'} size={'sm'} truncate>
-          {track.info.album.name}
-        </AppLink>
+        {track.album && (
+          <AppLink to={APP_ROUTES.album(track.album.id)} underline variant={'subdued'} size={'sm'} truncate>
+            {track.album.name}
+          </AppLink>
+        )}
       </td>
       <td></td>
       <td>
         <HStack gap={'32'} justify={'between'} max>
-          <IconButton icon={{ type: 'outlined', name: 'Heart' }} />
-          <Span>3:16</Span>
+          <IconButton icon={{ type: 'outlined', name: 'Heart' }} className={styles.likeBtn} />
+          <Span>{convertMsToTime(track.duration_ms)}</Span>
           <IconButton icon={{ type: 'outlined', name: 'DotsHorizontal' }} className={styles.contextBtn} />
         </HStack>
       </td>

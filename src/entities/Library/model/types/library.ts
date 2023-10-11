@@ -57,8 +57,8 @@ interface ColorDark {
 
 interface Source {
   url: string;
-  width: any;
-  height: any;
+  width: number;
+  height: number;
 }
 
 interface Owner {

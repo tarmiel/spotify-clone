@@ -32,13 +32,22 @@ const HomePage: FC = () => {
       </div>
     );
 
-  const headerBg = isAuthorized ? 'rgb(72 32 176)' : 'rgb(83 83 83)';
+  if (shortsSection) {
+    document.documentElement.style.setProperty(
+      '--page-header-bg',
+      shortsSection.items[0].image.extractedColors.colorDark.hex,
+    );
+  }
+
+  const onChangeColorHandler = (color: string) => {
+    document.documentElement.style.setProperty('--page-header-bg', color);
+  };
 
   return (
     <div className={styles.HomePage}>
-      <div className={styles.header} style={{ '--page-header-bg': `${headerBg}` } as React.CSSProperties}></div>
+      <div className={styles.header}></div>
       <VStack gap={'32'} max className={styles.content}>
-        {isAuthorized && shortsSection && <ShortsSection {...shortsSection} />}
+        {isAuthorized && shortsSection && <ShortsSection onChangeColor={onChangeColorHandler} {...shortsSection} />}
         {previewSections?.map((section) => <GenericSection key={section.id} {...section} />)}
       </VStack>
     </div>

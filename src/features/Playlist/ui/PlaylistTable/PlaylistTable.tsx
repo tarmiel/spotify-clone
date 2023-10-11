@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import { Track } from '@/entities/Track';
 import { cn } from '@/shared/lib/classNames';
 import { Icon } from '@/shared/ui/Icon';
 
@@ -11,7 +12,7 @@ import styles from './PlaylistTable.module.scss';
 
 interface IPlaylistTableProps {
   className?: string;
-  tracks: PlaylistTrack[];
+  tracks: Track[];
 }
 
 const PlaylistTable: FC<IPlaylistTableProps> = ({ tracks, className }) => {
@@ -27,7 +28,7 @@ const PlaylistTable: FC<IPlaylistTableProps> = ({ tracks, className }) => {
         </th>
       </PlaylistGrid>
       {tracks.map((track, i) => (
-        <PlaylistRow key={track.info.id} number={i + 1} track={track} />
+        <PlaylistRow key={track.id} number={i + 1} track={track} />
       ))}
     </table>
   );

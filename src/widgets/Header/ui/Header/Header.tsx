@@ -15,7 +15,9 @@ interface IHeaderProps {
 const Header: FC<IHeaderProps> = ({ className }) => {
   return (
     <header className={cn(styles.Header, className)}>
-      <div className={styles.back}></div>
+      <div className={styles.back}>
+        <div className={styles.sideBack}></div>
+      </div>
       <Controls />
       <Content />
       <Actions />

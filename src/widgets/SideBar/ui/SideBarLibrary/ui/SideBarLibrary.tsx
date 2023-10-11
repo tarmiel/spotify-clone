@@ -35,21 +35,9 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
     skip: !isAuthorized,
   });
 
-  const [addToLibrary, result] = useAddToLibraryMutation();
+  // const [addToLibrary, result] = useAddToLibraryMutation();
 
   // console.log(result);
-
-  const newLibraryItem: Omit<ILibraryItem, 'id'> = {
-    name: 'My playlist №1',
-    addedAt: { isoString: '' },
-    type: 'playlist',
-    pinned: false,
-    owner: {
-      id: user!.id,
-      name: '',
-      type: 'User',
-    },
-  };
 
   if (collapsed) {
     return (
@@ -71,7 +59,7 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <Icon type={'filled'} name={'Library'} width={24} height={24} /> Your Library
         </ClearButton>
         <HStack gap={'8'}>
-          <IconButton icon={{ type: 'outlined', name: 'Plus' }} onClick={() => addToLibrary(newLibraryItem)} />
+          <IconButton icon={{ type: 'outlined', name: 'Plus' }} />
 
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>

@@ -12,14 +12,15 @@ interface IShortsSectionProps {
   className?: string;
   title: string;
   items: SectionItem[];
+  onChangeColor: (color: string) => void;
 }
 
-export const ShortsSection: FC<IShortsSectionProps> = ({ title, items, className }) => {
+export const ShortsSection: FC<IShortsSectionProps> = ({ title, items, onChangeColor, className }) => {
   return (
     <section className={cn(styles.ShortsSection, className)}>
       <H2 className={styles.title}>{title}</H2>
       <div className={cn(styles.ShortsSectionGrid)}>
-        {items?.map((item) => <ShortsSectionItem key={item.id} {...item} />)}
+        {items?.map((item) => <ShortsSectionItem key={item.id} onChangeColor={onChangeColor} {...item} />)}
       </div>
     </section>
   );

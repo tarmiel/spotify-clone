@@ -12,11 +12,12 @@
     }
 
     .playBtn {
-      opacity: 1;
       pointer-events: auto;
       position: absolute;
     }
 
+    .playBtn,
+    .likeBtn,
     .contextBtn {
       opacity: 1;
     }
@@ -52,4 +53,8 @@
 
 .artistsList {
   width: 100%;
+}
+
+.likeBtn {
+  opacity: 0;
 }

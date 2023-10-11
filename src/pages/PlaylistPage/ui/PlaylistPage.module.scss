@@ -1,5 +1,5 @@
 .PlaylistPage {
-  --page-bg: rgb(80 56 160);
+  --page-bg: var(--page-header-bg, rgb(80 56 160));
 
   min-height: calc(673px);
   overflow-y: auto;

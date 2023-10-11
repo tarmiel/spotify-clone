@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
+import { useParams } from 'react-router-dom';
 
+import { useGetPlaylistByIdQuery } from '@/entities/Playlist';
 import { PlaylistTable } from '@/features/Playlist';
 import { APP_ROUTES } from '@/shared/const/router';
 import { tracks } from '@/shared/data/playlistTracks';
@@ -11,26 +13,36 @@ import { H1, Span } from '@/shared/ui/Typography';
 import styles from './PlaylistPage.module.scss';
 
 const PlaylistPage: FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const { data: playlist } = useGetPlaylistByIdQuery(id || '', {
+    skip: !id,
+  });
+
+  if (!playlist) return null;
+
+  document.documentElement.style.setProperty('--page-header-bg', playlist.images[0].extractedColors.colorDark.hex);
+
   return (
     <section className={styles.PlaylistPage}>
       <div className={styles.playlistHeader}>
         <div className={styles.headerbg}></div>
         <div className={styles.headerContent}>
           <div className={styles.image}>
-            <img src={'https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png'} />
+            <img src={playlist?.images[0].sources[0].url} alt={'playlist preview'} loading={'lazy'} />
           </div>
           <VStack className={styles.playlistInfo}>
             <Span color={'base'} size={'sm'}>
               Playlist
             </Span>
             <H1 truncate size={'responsive'}>
-              Liked Songs
+              {playlist?.name}
             </H1>
             <Span color={'base'}>
-              <AppLink to={APP_ROUTES.user('1')} size={'sm'} bold underline>
-                Oleg
+              <AppLink to={APP_ROUTES.artist(playlist.owner.id)} size={'sm'} bold underline>
+                {playlist?.owner.name}
               </AppLink>{' '}
-              • 123 songs
+              • {playlist.tracks.total} songs
             </Span>
           </VStack>
         </div>
@@ -40,7 +52,7 @@ const PlaylistPage: FC = () => {
         <div className={styles.controls}>
           <PlayPauseButton size={'lg'} />
         </div>
-        <PlaylistTable tracks={tracks} />
+        <PlaylistTable tracks={playlist.tracks.items} />
       </div>
     </section>
   );

@@ -13,13 +13,15 @@ import styles from './ShortsSectionItem.module.scss';
 
 interface IShortsSectionItemProps extends SectionItem {
   className?: string;
+  onChangeColor: (color: string) => void;
 }
 
-const ShortsSectionItem: FC<IShortsSectionItemProps> = ({ id, image, title, type, className }) => {
+const ShortsSectionItem: FC<IShortsSectionItemProps> = ({ id, image, title, type, onChangeColor, className }) => {
   return (
     <AppLink
       to={type === 'collection' ? APP_ROUTES.collection : APP_ROUTES.playlist(id)}
       className={cn(styles.ShortsSectionItem, className)}
+      onMouseEnter={() => onChangeColor(image.extractedColors.colorDark.hex)}
     >
       <HStack>
         <div className={styles.image}>
