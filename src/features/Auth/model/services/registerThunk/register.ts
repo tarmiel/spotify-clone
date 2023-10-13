@@ -29,16 +29,18 @@ export const register = createAsyncThunk<
     storage.setToken(response.data.token);
     return response.data;
   } catch (e) {
+    console.log(e);
     if (e instanceof AxiosError && e.response?.data) {
       const response = e.response;
       // console.log('axios response', response);
       // alert(e.response.data.message);
 
+      showNotification({
+        type: 'error',
+        content: e.response.data.message,
+      });
+
       if (response.status === 400) {
-        showNotification({
-          type: 'error',
-          content: e.response.data.message,
-        });
         return rejectWithValue(e.response.data.errors);
       }
     } else {

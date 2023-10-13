@@ -10,15 +10,15 @@ export const libraryApi = rtkApi.injectEndpoints({
       }),
       providesTags: ['Library'],
     }),
-    addToLibrary: build.mutation<void, Partial<ILibraryItem>>({
-      query: (payload) => ({
-        url: `/api/library`,
+    createPlaylist: build.mutation<void, number>({
+      query: (count) => ({
+        url: `/api/library/create`,
         method: 'POST',
-        body: payload,
+        body: { count },
       }),
       invalidatesTags: ['Library'],
     }),
   }),
 });
 
-export const { useGetLibraryQuery, useAddToLibraryMutation } = libraryApi;
+export const { useGetLibraryQuery, useCreatePlaylistMutation } = libraryApi;

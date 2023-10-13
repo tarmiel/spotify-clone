@@ -24,6 +24,7 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
   type,
   count,
   owner,
+  id,
   className,
 }) => {
   const MType = type === 'collection' ? 'Playlist' : type[0].toUpperCase() + type.slice(1);
@@ -32,7 +33,7 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
 
   if (collapsed) {
     return (
-      <AppLink to={APP_ROUTES.playlist('1')}>
+      <AppLink to={APP_ROUTES.playlist(id)}>
         <li className={cn(styles.LibraryItem, className)}>
           <div className={cn(styles.image, { [styles.fallback]: !image })}>
             <Avatar
@@ -48,7 +49,7 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
   }
 
   return (
-    <AppLink to={APP_ROUTES.playlist('1')}>
+    <AppLink to={APP_ROUTES.playlist(id)}>
       <li className={cn(styles.LibraryItem, className)}>
         <div className={cn(styles.image, { [styles.fallback]: !image })}>
           <Avatar

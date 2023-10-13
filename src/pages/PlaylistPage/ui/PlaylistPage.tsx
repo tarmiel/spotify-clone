@@ -1,14 +1,13 @@
-import React, { FC } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useGetPlaylistByIdQuery } from '@/entities/Playlist';
 import { PlaylistTable } from '@/features/Playlist';
-import { NotFoundPage } from '@/pages/NotFoundPage';
 import { APP_ROUTES } from '@/shared/const/router';
-import { tracks } from '@/shared/data/playlistTracks';
 import AppLink from '@/shared/ui/AppLink/AppLink';
+import { Avatar } from '@/shared/ui/Avatar';
 import { PlayPauseButton } from '@/shared/ui/Button/PlayPauseButton/PlayPauseButton';
-import { Loader } from '@/shared/ui/Loader';
+import { Icon } from '@/shared/ui/Icon';
 import { VStack } from '@/shared/ui/Stack';
 import { H1, Span } from '@/shared/ui/Typography';
 import { NotFound } from '@/widgets/NotFound';
@@ -26,15 +25,26 @@ const PlaylistPage: FC = () => {
   if (isLoading) return <PageLoader />;
   if (!playlist) return <NotFound />;
 
-  document.documentElement.style.setProperty('--page-header-bg', playlist.images[0].extractedColors.colorDark.hex);
+  const playlistImage =
+    playlist?.images?.[0]?.sources.find((source) => source.width === 300)?.url || playlist?.images?.[0]?.sources[0].url;
+
+  document.documentElement.style.setProperty(
+    '--page-header-bg',
+    playlist.images?.[0]?.extractedColors.colorDark.hex || 'rgb(83, 83, 83)',
+  );
 
   return (
     <section className={styles.PlaylistPage}>
       <div className={styles.playlistHeader}>
         <div className={styles.headerbg}></div>
         <div className={styles.headerContent}>
-          <div className={styles.image}>
-            <img src={playlist?.images[0].sources[0].url} alt={'playlist preview'} loading={'lazy'} />
+          <div className={styles.image} key={playlist.id}>
+            {/* <img src={playlistImage} alt={'playlist preview'} loading={'lazy'} /> */}
+            <Avatar
+              src={playlistImage}
+              alt={'playlist preview'}
+              fallBackIcon={<Icon type={'outlined'} name={'Melody'} width={64} height={64} />}
+            />
           </div>
           <VStack className={styles.playlistInfo}>
             <Span color={'base'} size={'sm'}>

@@ -8,20 +8,22 @@ import cls from './Avatar.module.scss';
 interface AvatarProps {
   className?: string;
   src?: string;
-  size?: number;
+  size?: number | string;
   alt?: string;
   rounded?: 'full' | 'sm';
   fallBackIcon?: ReactElement;
 }
 
-export const Avatar = ({ className, src, size = 48, alt, fallBackIcon, rounded }: AvatarProps) => {
+export const Avatar = ({ className, src, size = '100%', alt, fallBackIcon, rounded }: AvatarProps) => {
   const styles = {
     width: size,
     height: size,
+    // width: size || '100%',
+    // height: size || '100%',
   };
 
   //   const fallback = <Skeleton width={size} height={size} border="50%" />;
-  const fallback = 'loading...';
+  const fallback = '';
 
   return (
     <AppImage

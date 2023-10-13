@@ -58,11 +58,16 @@
   .image {
     height: 192px;
     width: 192px;
+    color: #7f7f7f;
+    background-color: #282828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
 
     img {
       height: 100%;
-      box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
     }
 
     @media (width >= 1280px) {

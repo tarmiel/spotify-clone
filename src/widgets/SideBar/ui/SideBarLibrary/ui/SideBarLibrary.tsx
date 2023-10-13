@@ -1,14 +1,13 @@
-import React, { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
-import { ILibrary, ILibraryItem, Library, useAddToLibraryMutation, useGetLibraryQuery } from '@/entities/Library';
-import { APP_ROUTES } from '@/shared/const/router';
+import { Library, useGetLibraryQuery } from '@/entities/Library';
+import { ActionsDropDown } from '@/features/Library';
 import { cn } from '@/shared/lib/classNames';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
-import AppLink from '@/shared/ui/AppLink/AppLink';
 import { ClearButton } from '@/shared/ui/Button/ClearButton/ClearButton';
 import { IconButton } from '@/shared/ui/Button/IconButton/IconButton';
 import { Icon } from '@/shared/ui/Icon';
-import Select, { ISelectItem } from '@/shared/ui/Select/Select';
+import { ISelectItem } from '@/shared/ui/Select/Select';
 import { HStack } from '@/shared/ui/Stack';
 
 import { SideBarAdSections } from '../../SideBarAdSections/SideBarAdSections';
@@ -35,9 +34,16 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
     skip: !isAuthorized,
   });
 
-  // const [addToLibrary, result] = useAddToLibraryMutation();
+  const userPlaylistCount = useMemo(() => {
+    return (
+      library?.items.reduce((acc, item) => {
+        if (item.type === 'playlist' && item.owner?.id === user?.id) return ++acc;
+        return acc;
+      }, 0) || 0
+    );
+  }, [library]);
 
-  // console.log(result);
+  console.log(userPlaylistCount);
 
   if (collapsed) {
     return (
@@ -59,7 +65,8 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
           <Icon type={'filled'} name={'Library'} width={24} height={24} /> Your Library
         </ClearButton>
         <HStack gap={'8'}>
-          <IconButton icon={{ type: 'outlined', name: 'Plus' }} />
+          {/* <IconButton icon={{ type: 'outlined', name: 'Plus' }} /> */}
+          <ActionsDropDown userPlaylistCount={userPlaylistCount} />
 
           <IconButton icon={{ type: 'outlined', name: 'ArrowRight' }} />
         </HStack>
