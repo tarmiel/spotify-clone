@@ -18,7 +18,14 @@ export const libraryApi = rtkApi.injectEndpoints({
       }),
       invalidatesTags: ['Library'],
     }),
+    removePlaylist: build.mutation<void, string>({
+      query: (playlistId) => ({
+        url: `/api/library/playlist/remove/${playlistId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['Library'],
+    }),
   }),
 });
 
-export const { useGetLibraryQuery, useCreatePlaylistMutation } = libraryApi;
+export const { useGetLibraryQuery, useCreatePlaylistMutation, useRemovePlaylistMutation } = libraryApi;
