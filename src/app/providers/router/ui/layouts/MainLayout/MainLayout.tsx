@@ -1,4 +1,4 @@
-import { memo, ReactElement, Suspense } from 'react';
+import { memo, ReactElement, Suspense, useLayoutEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { cn } from '@/shared/lib/classNames/classNames';
@@ -20,7 +20,7 @@ export const MainLayout = memo(() => {
       <div className={styles.header}>
         <Header />
       </div>
-      <div className={styles.content}>
+      <div id={'content'} className={styles.content}>
         {/* <div className={styles.spacer}></div> */}
         {/* <div className={styles.main}> */}
         <Suspense fallback={<PageLoader />}>

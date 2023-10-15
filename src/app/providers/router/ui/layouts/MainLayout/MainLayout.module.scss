@@ -53,6 +53,7 @@
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
+  overflow-y: auto;
   position: relative;
   border-radius: var(--rounded-md);
   background-color: var(--background-base);
