@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
 import { IconButton } from '@/shared/ui/Button';
@@ -11,7 +11,7 @@ interface IPlayerActionsProps {
   setVolume?: (value: number) => void;
 }
 
-export const PlayerActions: FC<IPlayerActionsProps> = ({ setVolume, volume, className }) => {
+export const PlayerActions: FC<IPlayerActionsProps> = memo(({ setVolume, volume, className }) => {
   return (
     <HStack gap={'4'} justify={'end'} className={cn(className)}>
       <IconButton icon={{ type: 'outlined', name: 'PlayScreen' }} title={'Now Playing View'} />
@@ -21,4 +21,4 @@ export const PlayerActions: FC<IPlayerActionsProps> = ({ setVolume, volume, clas
       <VolumeBar value={volume} setVolume={setVolume} min={0} max={100} />
     </HStack>
   );
-};
+});

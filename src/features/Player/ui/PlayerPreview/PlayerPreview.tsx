@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+import { useSelector } from 'react-redux';
 
+import { getCurrentTrack } from '@/entities/Player';
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
 import AppLink from '@/shared/ui/AppLink/AppLink';
@@ -14,17 +16,29 @@ interface IPlayerPreviewProps {
   className?: string;
 }
 
-export const PlayerPreview: FC<IPlayerPreviewProps> = ({ className }) => {
+export const PlayerPreview: FC<IPlayerPreviewProps> = memo(({ className }) => {
+  const track = useSelector(getCurrentTrack);
+
+  if (!track) return null;
+
   return (
     <div className={cn(styles.PlayerPreview, className)}>
       <div className={styles.image}>
         <div className={styles.fallback}>
           <Icon type={'outlined'} name={'Melody'} />
         </div>
-        <img
+        {/* <img
           width={56}
           height={56}
           src={'https://i.scdn.co/image/ab67616d0000485188917ce3d617aa8c71b29380'}
+          aria-hidden="false"
+          loading="eager"
+          onError={(e) => (e.currentTarget.style.display = 'none')}
+        /> */}
+        <img
+          width={56}
+          height={56}
+          src={track?.url}
           aria-hidden="false"
           loading="eager"
           onError={(e) => (e.currentTarget.style.display = 'none')}
@@ -33,17 +47,17 @@ export const PlayerPreview: FC<IPlayerPreviewProps> = ({ className }) => {
       <div className={styles.content}>
         <P>
           <AppLink to={APP_ROUTES.track('track')} truncate underline size={'sm'}>
-            Title
+            {track?.name}
           </AppLink>
         </P>
         <Span truncate>
-          <AppLink to={APP_ROUTES.artist('artist')} variant={'subdued'} size={'xs'} underline>
-            Artist
-          </AppLink>
-          {', '}
-          <AppLink to={APP_ROUTES.artist('artist')} variant={'subdued'} size={'xs'} underline>
-            Artist
-          </AppLink>
+          {track.artists.map((artist) => (
+            <>
+              <AppLink key={artist.id} to={APP_ROUTES.artist('artist')} variant={'subdued'} size={'xs'} underline>
+                {artist.name}
+              </AppLink>{' '}
+            </>
+          ))}
         </Span>
       </div>
       <VStack justify={'center'} noShrink>
@@ -52,4 +66,4 @@ export const PlayerPreview: FC<IPlayerPreviewProps> = ({ className }) => {
       </VStack>
     </div>
   );
-};
+});

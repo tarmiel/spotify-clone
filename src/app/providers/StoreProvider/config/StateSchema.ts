@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
+import { PlayerSchema } from '@/entities/Player';
 import { SessionSchema } from '@/entities/Session';
 import { AuthSchema } from '@/features/Auth';
 import { rtkApi } from '@/shared/api/rtkApi';
@@ -10,8 +11,9 @@ export interface StateSchema {
   session: SessionSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-  auth?: AuthSchema;
   // async reducers
+  auth?: AuthSchema;
+  player?: PlayerSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

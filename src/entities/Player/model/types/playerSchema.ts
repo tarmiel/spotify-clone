@@ -1,5 +1,10 @@
+import { Track } from '@/entities/Track';
+
 export interface PlayerSchema {
-  currentSong?: number;
-  isPlaying?: boolean;
-  queue?: number[];
+  isPlaying: boolean;
+  isActive: boolean;
+  queue: Track[];
+  currentTrackIndex: number;
+  currentTrack?: Track;
+  currentPlaylistId?: string;
 }

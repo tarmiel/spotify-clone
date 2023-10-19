@@ -43,8 +43,6 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
     );
   }, [library]);
 
-  console.log(userPlaylistCount);
-
   if (collapsed) {
     return (
       <div className={cn(styles.SideBarLibrary, className)}>
