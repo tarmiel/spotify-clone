@@ -1,22 +1,15 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import {
-  getCurrentTrack,
-  getCurrentTrackIndex,
-  getIsPlayerPlaying,
-  getPlayer,
-  getQueue,
-  playerActions,
-  playerReducer,
-} from '@/entities/Player';
-import { getIsPlayerActive } from '@/entities/Player';
+import { getPlayer, playerActions, playerReducer } from '@/entities/Player';
+import { useGetPlaylistByIdQuery } from '@/entities/Playlist';
 import { PlayerActions, PlayerControls, PlayerPreview } from '@/features/Player';
 import { cn } from '@/shared/lib/classNames';
 import DynamicModuleLoader, { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Audio } from '@/shared/ui/Audio/Audio';
-import { HStack } from '@/shared/ui/Stack';
+import { PlaybackBar } from '@/shared/ui/PlaybackBar/PlaybackBar';
+import { HStack, VStack } from '@/shared/ui/Stack';
 
 import styles from './Player.module.scss';
 
@@ -30,14 +23,11 @@ const playerReducers: ReducersList = {
 
 export const Player: FC<IPlayerProps> = ({ className }) => {
   const dispatch = useAppDispatch();
-  const isActive = useSelector(getIsPlayerActive);
-  const isPlaying = useSelector(getIsPlayerPlaying);
-  const queue = useSelector(getQueue);
-  const currentTrack = useSelector(getCurrentTrack);
-  const currentTrackIndex = useSelector(getCurrentTrackIndex);
+  const { isActive, isPlaying, queue, currentTrack, currentTrackIndex, currentPlaylistId } = useSelector(getPlayer);
 
   const [duration, setDuration] = useState(0);
   const [shuffle, setShuffle] = useState(false);
+  const [repeat, setRepeat] = useState(false);
 
   const [seekValue, setSeekValue] = useState(0);
   const [playingValue, setPlayingValue] = useState(0);
@@ -50,6 +40,22 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
     return JSON.parse(savedVolume) as number;
   });
 
+  const { data: playlist } = useGetPlaylistByIdQuery(currentPlaylistId || '', {
+    skip: queue.length !== 0 || !currentPlaylistId,
+  });
+
+  useEffect(() => {
+    if (playlist && queue.length === 0) {
+      dispatch(
+        playerActions.setPlayer({
+          queue: playlist.tracks.items,
+          currentPlaylistId: playlist.id,
+          currentTrack: playlist.tracks.items[0],
+        }),
+      );
+    }
+  }, [playlist]);
+
   const handlePlayPause = useCallback(
     (state?: boolean) => {
       if (!isActive || !currentTrack) return;
@@ -59,25 +65,28 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
     [isActive, currentTrack],
   );
 
+  const handleShuffle = useCallback(() => setShuffle((prev) => !prev), []);
+  const handleRepeat = useCallback(() => setRepeat((prev) => !prev), []);
+
   const handleNextSong = useCallback(() => {
-    dispatch(playerActions.playPause(false));
+    // dispatch(playerActions.playPause(false));
 
     if (!shuffle) {
-      dispatch(playerActions.nextSong((currentTrackIndex + 1) % queue.length));
+      dispatch(playerActions.nextSong(currentTrackIndex + 1));
     } else {
-      dispatch(playerActions.nextSong(Math.floor(Math.random() * queue.length)));
+      const nextTrackIndex = Math.floor(Math.random() * queue.length);
+      dispatch(playerActions.nextSong(nextTrackIndex === currentTrackIndex ? currentTrackIndex + 1 : nextTrackIndex));
     }
-  }, [shuffle]);
+  }, [shuffle, currentTrackIndex, queue, isPlaying]);
 
   const handlePrevSong = useCallback(() => {
-    dispatch(playerActions.playPause(false));
-
     if (shuffle) {
-      dispatch(playerActions.prevSong(Math.floor(Math.random() * queue.length)));
+      const prevTrackIndex = Math.floor(Math.random() * queue.length);
+      dispatch(playerActions.prevSong(prevTrackIndex === currentTrackIndex ? currentTrackIndex - 1 : prevTrackIndex));
     } else {
       dispatch(playerActions.prevSong(currentTrackIndex - 1));
     }
-  }, [shuffle]);
+  }, [shuffle, currentTrackIndex]);
 
   return (
     <DynamicModuleLoader reducers={playerReducers}>
@@ -86,34 +95,43 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
           <div className={styles.trackPreview}>
             <PlayerPreview />
           </div>
-          <div className={styles.trackControls}>
+          <VStack gap={'8'} max className={styles.trackControls}>
             <PlayerControls
-              duration={duration}
               isPlaying={isPlaying}
+              isShuffle={shuffle}
+              isRepeat={repeat}
               playPauseHandler={handlePlayPause}
-              setSeekValue={setSeekValue}
-              playingValue={playingValue}
-              isLoadingTrack={isLoading}
+              shuffleHandler={handleShuffle}
+              repeatHandler={handleRepeat}
+              prevHandler={handlePrevSong}
+              nextHandler={handleNextSong}
             />
-          </div>
+            <PlaybackBar max={duration} min={0} isLoading={isLoading} value={playingValue} setSeekTime={setSeekValue} />
+          </VStack>
           <HStack justify={'end'} className={styles.trackActions}>
             <PlayerActions volume={volume} setVolume={setVolume} />
           </HStack>
         </HStack>
         <Audio
-          src={currentTrack?.url}
-          // src={currentTrack?.url || 'http://127.0.0.1:5000/s3.mp3'}
+          // src={currentTrack?.url || ''}
+          src={currentTrack?.url || 'http://127.0.0.1:5000/s3.mp3'}
           isPlaying={isPlaying}
           volume={volume}
+          loop={repeat}
           seekValue={seekValue}
+          autoPlay={isPlaying}
           onLoadStart={() => setIsLoading(true)}
-          onLoadedData={() => setIsLoading(false)}
+          onLoadedData={() => {
+            setIsLoading(false);
+            // handlePlayPause(true);
+          }}
           onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-          onPlay={() => handlePlayPause(true)}
-          onPause={() => handlePlayPause(false)}
           onTimeUpdate={(e) => {
             setPlayingValue(Math.floor(e.currentTarget.currentTime));
           }}
+          onEnded={handleNextSong}
+          // onPlay={() => handlePlayPause(true)}
+          // onPause={() => handlePlayPause(false)}
         />
       </div>
     </DynamicModuleLoader>

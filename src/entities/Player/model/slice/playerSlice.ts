@@ -6,13 +6,17 @@ const initialState: PlayerSchema = {
   queue: [],
   currentTrackIndex: 0,
   isPlaying: false,
-  isActive: true,
+  isActive: false,
+  currentPlaylistId: '6527cbaa9290658a887d02d5',
 };
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
+    setPlayer: (state, { payload }: PayloadAction<Partial<PlayerSchema>>) => {
+      return { ...state, ...payload, isActive: true };
+    },
     nextSong: (state, { payload }: PayloadAction<number>) => {
       if (state.queue[payload]) {
         state.currentTrack = state.queue[payload];

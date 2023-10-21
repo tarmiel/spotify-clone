@@ -32,11 +32,13 @@ const HomePage: FC = () => {
       </div>
     );
 
-  if (shortsSection) {
+  if (shortsSection && isAuthorized) {
     document.documentElement.style.setProperty(
       '--page-header-bg',
       shortsSection.items[0].image.extractedColors.colorDark.hex,
     );
+  } else {
+    document.documentElement.style.removeProperty('--page-header-bg');
   }
 
   const onChangeColorHandler = (color: string) => {

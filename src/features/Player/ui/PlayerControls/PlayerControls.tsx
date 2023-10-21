@@ -1,11 +1,8 @@
-import React, { FC, useState } from 'react';
+import { FC, memo } from 'react';
 
 import { cn } from '@/shared/lib/classNames';
-import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
-import { Audio } from '@/shared/ui/Audio/Audio';
-import { IconButton, PlayPauseButton } from '@/shared/ui/Button';
-import { PlaybackBar } from '@/shared/ui/PlaybackBar/PlaybackBar';
-import { HStack, VStack } from '@/shared/ui/Stack';
+import { IconButton, PlayPauseButton, RepeatButton, ShuffleButton } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
 
 import styles from './PlayerControls.module.scss';
 
@@ -13,31 +10,34 @@ interface IPlayerControlsProps {
   className?: string;
   isPlaying: boolean;
   playPauseHandler: () => void;
-  duration: number;
-  setSeekValue: (value: number) => void;
-  isLoadingTrack?: boolean;
-  playingValue: number;
+  isShuffle: boolean;
+  shuffleHandler: () => void;
+  isRepeat: boolean;
+  repeatHandler: () => void;
+  prevHandler: () => void;
+  nextHandler: () => void;
 }
 
-export const PlayerControls: FC<IPlayerControlsProps> = ({
-  isPlaying,
-  playPauseHandler,
-  duration = 0,
-  setSeekValue,
-  isLoadingTrack,
-  playingValue,
-  className,
-}) => {
-  return (
-    <VStack gap={'8'} className={cn(styles.PlayerControls, className)}>
-      <HStack justify={'center'} gap={'16'} className={styles.conrols} max>
-        <IconButton icon={{ type: 'outlined', name: 'Shuffle' }} />
-        <IconButton icon={{ type: 'filled', name: 'PlayerPrev' }} />
+export const PlayerControls: FC<IPlayerControlsProps> = memo(
+  ({
+    isPlaying,
+    playPauseHandler,
+    isShuffle,
+    shuffleHandler,
+    isRepeat,
+    repeatHandler,
+    prevHandler,
+    nextHandler,
+    className,
+  }) => {
+    return (
+      <HStack justify={'center'} gap={'16'} className={cn(styles.PlayerControls, styles.conrols, className)} max>
+        <ShuffleButton isActive={isShuffle} onClick={shuffleHandler} />
+        <IconButton icon={{ type: 'filled', name: 'PlayerPrev' }} onClick={prevHandler} />
         <PlayPauseButton variant={'secondary'} size={'sm'} onClick={() => playPauseHandler()} isActive={isPlaying} />
-        <IconButton icon={{ type: 'filled', name: 'PlayerNext' }} />
-        <IconButton icon={{ type: 'outlined', name: 'Repeat' }} />
+        <IconButton icon={{ type: 'filled', name: 'PlayerNext' }} onClick={nextHandler} />
+        <RepeatButton isActive={isRepeat} onClick={repeatHandler} />
       </HStack>
-      <PlaybackBar max={duration} min={0} isLoading={isLoadingTrack} value={playingValue} setSeekTime={setSeekValue} />
-    </VStack>
-  );
-};
+    );
+  },
+);

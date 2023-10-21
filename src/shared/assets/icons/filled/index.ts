@@ -9,6 +9,7 @@ export { default as Home } from './home.svg';
 export { default as Library } from './library.svg';
 export { default as LogoPrimary } from './logo-primary.svg';
 export { default as LogoSecondary } from './logo-secondary.svg';
+export { default as NowPlaying } from './now-playing.svg';
 export { default as Pause } from './pause.svg';
 export { default as Pin } from './pin.svg';
 export { default as Play } from './play.svg';

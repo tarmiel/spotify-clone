@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { APP_ROUTES } from '@/shared/const/router';
 import { cn } from '@/shared/lib/classNames';
@@ -16,6 +17,7 @@ import styles from './LibraryItem.module.scss';
 interface ILibraryItemProps extends ILibraryItem {
   className?: string;
   collapsed?: boolean;
+  isPlaying?: boolean;
 }
 
 export const LibraryItem: FC<ILibraryItemProps> = ({
@@ -27,13 +29,14 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
   count,
   owner,
   id,
+  isPlaying,
   className,
 }) => {
   const [removeFromLibrary] = useRemovePlaylistMutation();
 
   const MType = type === 'collection' ? 'Playlist' : type[0].toUpperCase() + type.slice(1);
 
-  const tags = [MType, owner?.name, count];
+  const tags = [MType, owner?.name];
 
   let content;
 
@@ -43,7 +46,14 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
         <P truncate>{name}</P>
         <HStack gap={'8'}>
           {pinned && (
-            <Icon type={'filled'} name={'Pin'} width={12} height={12} color={'var(--text-bright-accent,#117a37)'} />
+            <Icon
+              type={'filled'}
+              name={'Pin'}
+              width={12}
+              height={12}
+              color={'var(--text-bright-accent,#117a37)'}
+              style={{ flexShrink: 0 }}
+            />
           )}
           <Span truncate>{tags.filter((tag) => Boolean(tag)).join(' • ')}</Span>
         </HStack>
@@ -61,7 +71,11 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
         },
       ]}
     >
-      <AppLink to={APP_ROUTES.playlist(id)}>
+      <NavLink
+        to={APP_ROUTES.playlist(id)}
+        className={({ isActive }) => cn(styles.libraryItemLink, { [styles.activeLink]: isActive })}
+        draggable={false}
+      >
         <li className={cn(styles.LibraryItem, className)}>
           <div className={cn(styles.image, { [styles.fallback]: !image })}>
             <Avatar
@@ -72,8 +86,13 @@ export const LibraryItem: FC<ILibraryItemProps> = ({
             />
           </div>
           {content}
+          {isPlaying && (
+            <div className={styles.nowPlaying}>
+              <Icon type={'filled'} name={'NowPlaying'} />
+            </div>
+          )}
         </li>
-      </AppLink>
+      </NavLink>
     </ContextMenu>
   );
 };

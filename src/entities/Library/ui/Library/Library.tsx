@@ -13,6 +13,7 @@ interface ILibraryProps {
   collapsed?: boolean;
   isLoading?: boolean;
   items?: ILibraryItem[];
+  playingPlaylistId?: string;
 }
 
 const Litems = [
@@ -49,7 +50,7 @@ const Litems = [
 const getSkeletons = (collapsed?: boolean) =>
   new Array(6).fill(0).map((item, index) => <LibraryItemSkeleton key={index} collapsed={collapsed} />);
 
-const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed, items }) => {
+const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed, items, playingPlaylistId }) => {
   if (isLoading) {
     return (
       <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>{getSkeletons(collapsed)}</ul>
@@ -62,7 +63,9 @@ const Library: FC<ILibraryProps> = ({ isLoading, className, collapsed, items }) 
 
   return (
     <ul className={cn(styles.Library, className, { [styles.collapsed]: collapsed })}>
-      {items?.map((item) => <LibraryItem key={item.id} {...item} collapsed={collapsed} />)}
+      {items?.map((item) => (
+        <LibraryItem key={item.id} {...item} collapsed={collapsed} isPlaying={playingPlaylistId === item.id} />
+      ))}
     </ul>
   );
 };

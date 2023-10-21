@@ -21,24 +21,20 @@ export const PlayerPreview: FC<IPlayerPreviewProps> = memo(({ className }) => {
 
   if (!track) return null;
 
+  const trackImg =
+    track.album?.images.find((img) => img.width && img.width >= 50 && img.width <= 100)?.url ||
+    track.album?.images[0].url;
+
   return (
     <div className={cn(styles.PlayerPreview, className)}>
       <div className={styles.image}>
         <div className={styles.fallback}>
           <Icon type={'outlined'} name={'Melody'} />
         </div>
-        {/* <img
-          width={56}
-          height={56}
-          src={'https://i.scdn.co/image/ab67616d0000485188917ce3d617aa8c71b29380'}
-          aria-hidden="false"
-          loading="eager"
-          onError={(e) => (e.currentTarget.style.display = 'none')}
-        /> */}
         <img
           width={56}
           height={56}
-          src={track?.url}
+          src={trackImg}
           aria-hidden="false"
           loading="eager"
           onError={(e) => (e.currentTarget.style.display = 'none')}
@@ -46,17 +42,15 @@ export const PlayerPreview: FC<IPlayerPreviewProps> = memo(({ className }) => {
       </div>
       <div className={styles.content}>
         <P>
-          <AppLink to={APP_ROUTES.track('track')} truncate underline size={'sm'}>
+          <AppLink to={APP_ROUTES.track(track.id)} truncate underline size={'sm'}>
             {track?.name}
           </AppLink>
         </P>
         <Span truncate>
           {track.artists.map((artist) => (
-            <>
-              <AppLink key={artist.id} to={APP_ROUTES.artist('artist')} variant={'subdued'} size={'xs'} underline>
-                {artist.name}
-              </AppLink>{' '}
-            </>
+            <AppLink key={artist.id} to={APP_ROUTES.artist(artist.id)} variant={'subdued'} size={'xs'} underline>
+              {artist.name}{' '}
+            </AppLink>
           ))}
         </Span>
       </div>

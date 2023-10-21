@@ -37,3 +37,30 @@
   gap: 2px;
   min-width: 0;
 }
+
+.nowPlaying {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  padding: 8px;
+  height: 100%;
+  color: var(--essential-bright-accent);
+}
+
+.libraryItemLink {
+  text-decoration: none;
+}
+
+.activeLink {
+  .LibraryItem {
+    background-color: var(--background-tinted-base, rgb(0 0 0 / 8%));
+    border-radius: 6px;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--background-tinted-highlight, rgb(0 0 0 / 5%));
+    }
+  }
+}

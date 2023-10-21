@@ -1,4 +1,5 @@
 export {
+  getCurrentPlaylistId,
   getCurrentTrack,
   getCurrentTrackIndex,
   getIsPlayerActive,

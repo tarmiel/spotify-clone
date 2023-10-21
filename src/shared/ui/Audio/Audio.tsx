@@ -1,4 +1,4 @@
-import { AudioHTMLAttributes, FC, useCallback, useEffect, useRef } from 'react';
+import { AudioHTMLAttributes, FC, useEffect, useRef } from 'react';
 
 interface AudioProps extends AudioHTMLAttributes<HTMLAudioElement> {
   isPlaying?: boolean;

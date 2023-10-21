@@ -1,6 +1,8 @@
 import { FC, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Library, useGetLibraryQuery } from '@/entities/Library';
+import { getCurrentPlaylistId } from '@/entities/Player';
 import { ActionsDropDown } from '@/features/Library';
 import { cn } from '@/shared/lib/classNames';
 import { useAuth } from '@/shared/lib/hooks/useAuth/useAuth';
@@ -28,6 +30,7 @@ const selectItems: ISelectItem<string>[] = [
 ];
 
 export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse, className }) => {
+  const playingPlaylist = useSelector(getCurrentPlaylistId);
   const [sortByValue, setSortByValue] = useState(selectItems[0].value);
   const { user, isAuthorized } = useAuth();
   const { isLoading, data: library } = useGetLibraryQuery(null, {
@@ -75,7 +78,12 @@ export const SideBarLibrary: FC<ISideBarLibraryProps> = ({ collapsed, onCollapse
       </HStack> */}
 
       {isAuthorized ? (
-        <Library collapsed={collapsed} isLoading={isLoading} items={library?.items} />
+        <Library
+          collapsed={collapsed}
+          isLoading={isLoading}
+          items={library?.items}
+          playingPlaylistId={playingPlaylist}
+        />
       ) : (
         <SideBarAdSections />
       )}
