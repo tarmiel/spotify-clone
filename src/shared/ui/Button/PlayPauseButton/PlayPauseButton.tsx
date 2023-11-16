@@ -10,7 +10,7 @@ import styles from './PlayPauseButton.module.scss';
 interface IPlayPauseButtonProps extends IButtonProps {
   isActive?: boolean;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'clear';
 }
 
 export const PlayPauseButton: FC<IPlayPauseButtonProps> = ({

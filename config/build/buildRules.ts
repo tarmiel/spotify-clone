@@ -12,6 +12,7 @@ export function buildRules(options: BuildOptions): webpack.RuleSetRule[] {
         loader: '@svgr/webpack',
         options: {
           dimensions: false,
+          icon: true,
         },
       },
     ],

@@ -40,21 +40,21 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
     return JSON.parse(savedVolume) as number;
   });
 
-  const { data: playlist } = useGetPlaylistByIdQuery(currentPlaylistId || '', {
-    skip: queue.length !== 0 || !currentPlaylistId,
-  });
+  // const { data: playlist } = useGetPlaylistByIdQuery(currentPlaylistId || '', {
+  //   skip: queue.length !== 0 || !currentPlaylistId,
+  // });
 
-  useEffect(() => {
-    if (playlist && queue.length === 0) {
-      dispatch(
-        playerActions.setPlayer({
-          queue: playlist.tracks.items,
-          currentPlaylistId: playlist.id,
-          currentTrack: playlist.tracks.items[0],
-        }),
-      );
-    }
-  }, [playlist]);
+  // useEffect(() => {
+  //   if (playlist && queue.length === 0) {
+  //     dispatch(
+  //       playerActions.setPlayer({
+  //         queue: playlist.tracks.items,
+  //         currentPlaylistId: playlist.id,
+  //         currentTrack: playlist.tracks.items[0],
+  //       }),
+  //     );
+  //   }
+  // }, [playlist]);
 
   const handlePlayPause = useCallback(
     (state?: boolean) => {
@@ -114,7 +114,7 @@ export const Player: FC<IPlayerProps> = ({ className }) => {
         </HStack>
         <Audio
           // src={currentTrack?.url || ''}
-          src={currentTrack?.url || 'http://127.0.0.1:5000/s3.mp3'}
+          src={currentTrack?.url}
           isPlaying={isPlaying}
           volume={volume}
           loop={repeat}

@@ -13,11 +13,12 @@ import styles from './PlaylistTable.module.scss';
 interface IPlaylistTableProps {
   className?: string;
   tracks: Track[];
+  playlistId: string;
 }
 
-const PlaylistTable: FC<IPlaylistTableProps> = ({ tracks, className }) => {
+const PlaylistTable: FC<IPlaylistTableProps> = ({ tracks, playlistId, className }) => {
   return (
-    <table className={cn(styles.PlaylistTable, className)}>
+    <table className={cn(styles.PlaylistTable, className)} key={playlistId}>
       <PlaylistGrid className={styles.tableHeader}>
         <th>#</th>
         <th>Title</th>
@@ -28,7 +29,7 @@ const PlaylistTable: FC<IPlaylistTableProps> = ({ tracks, className }) => {
         </th>
       </PlaylistGrid>
       {tracks.map((track, i) => (
-        <PlaylistRow key={track.id} number={i + 1} track={track} />
+        <PlaylistRow key={track.id} number={i + 1} track={track} playlistId={playlistId} />
       ))}
     </table>
   );

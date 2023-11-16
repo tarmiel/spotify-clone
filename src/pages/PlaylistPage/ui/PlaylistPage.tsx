@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { getCurrentPlaylistId, getIsPlayerPlaying, playerActions } from '@/entities/Player';
 import { useGetPlaylistByIdQuery } from '@/entities/Playlist';
 import { PlaylistTable } from '@/features/Playlist';
 import { APP_ROUTES } from '@/shared/const/router';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
 import { PlayPauseButton } from '@/shared/ui/Button/PlayPauseButton/PlayPauseButton';
@@ -17,10 +20,29 @@ import styles from './PlaylistPage.module.scss';
 
 const PlaylistPage: FC = () => {
   const { id } = useParams<{ id: string }>();
+  const isPlaying = useSelector(getIsPlayerPlaying);
+  const currentPlayingPlaylistId = useSelector(getCurrentPlaylistId);
+  const dispatch = useAppDispatch();
 
   const { data: playlist, isLoading } = useGetPlaylistByIdQuery(id || '', {
     skip: !id,
   });
+
+  const handlePlayPause = useCallback(() => {
+    if (currentPlayingPlaylistId !== playlist?.id) {
+      return dispatch(
+        playerActions.setPlayer({
+          queue: playlist?.tracks.items,
+          currentPlaylistId: playlist?.id,
+          currentTrackIndex: 0,
+          currentTrack: playlist?.tracks.items[0],
+          isPlaying: true,
+        }),
+      );
+    }
+
+    dispatch(playerActions.playPause());
+  }, [currentPlayingPlaylistId, dispatch, playerActions, playlist]);
 
   if (isLoading) return <PageLoader />;
   if (!playlist) return <NotFound />;
@@ -65,9 +87,13 @@ const PlaylistPage: FC = () => {
       <div className={styles.playlistContent}>
         <div className={styles.contentTopBg}></div>
         <div className={styles.controls}>
-          <PlayPauseButton size={'lg'} />
+          <PlayPauseButton
+            size={'lg'}
+            isActive={currentPlayingPlaylistId === playlist?.id && isPlaying}
+            onClick={handlePlayPause}
+          />
         </div>
-        <PlaylistTable tracks={playlist.tracks.items} />
+        <PlaylistTable tracks={playlist.tracks.items} playlistId={playlist.id} />
       </div>
     </section>
   );

@@ -39,6 +39,7 @@
   }
 
   .playBtn {
+    color: var(--background-inverted);
     opacity: 0;
     pointer-events: none;
     position: absolute;
@@ -57,4 +58,8 @@
 
 .likeBtn {
   opacity: 0;
+}
+
+.activeTrack {
+  color: var(--background-bright-accent);
 }
